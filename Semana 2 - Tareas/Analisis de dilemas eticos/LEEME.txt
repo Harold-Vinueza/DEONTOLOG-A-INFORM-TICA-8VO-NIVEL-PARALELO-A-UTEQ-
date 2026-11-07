@@ -1,0 +1,26 @@
+PROYECTO LATEX FINAL CON ORCID
+
+Archivos del proyecto
+- main.tex
+- logos/logo-uteq.png
+
+En Overleaf
+1. Crear un proyecto mediante «Subir proyecto» y seleccionar este ZIP.
+2. Mantener main.tex como documento principal.
+3. Elegir pdfLaTeX como compilador y recompilar.
+4. Descargar el PDF para entregar la actividad.
+
+Compilación local: ejecutar pdfLaTeX dos veces sobre main.tex desde la carpeta del proyecto.
+
+ORCID de los integrantes
+Farinango Guandinango Freddy Vladimir: https://orcid.org/0009-0006-5075-6158
+Urbina Romero Isaias Abraham: https://orcid.org/0009-0000-5249-0679
+Villamarin Cuenca Ivan Andres: https://orcid.org/0009-0007-3366-6887
+Vinueza Sanchez Harold Nicolas: https://orcid.org/0009-0002-5481-4299
+
+Cada ORCID aparece debajo del nombre correspondiente en la portada y funciona como enlace.
+El trabajo mantiene la modalidad grupal, los cinco casos y la reflexión de 185 palabras.
+
+Repositorio de material complementario
+https://github.com/Harold-Vinueza/DEONTOLOG-A-INFORM-TICA-8VO-NIVEL-PARALELO-A-UTEQ-
+El PDF incluye una página final con este enlace. El propietario del repositorio añadirá el ZIP en GitHub.

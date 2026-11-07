@@ -1,0 +1,43 @@
+
+name: Compilar todos los documentos LaTeX
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.tex'
+      - '**/*.png'
+      - '**/*.jpg'
+      - '**/*.jpeg'
+      - '**/*.pdf'
+      - '**/*.yml'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compilar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preparar LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: '**/main.tex'
+          compiler: latexmk
+          args: -pdf -file-line-error -interaction=nonstopmode
+          continue_on_error: false
+
+      - name: Guardar los PDF generados
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Actualizar PDF compilados [skip ci]"
+          file_pattern: '**/*.pdf'

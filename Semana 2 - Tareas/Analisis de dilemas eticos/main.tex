@@ -1,0 +1,665 @@
+% !TeX program = pdflatex
+% Plantilla institucional editable — UTEQ 
+% Compatible con Overleaf usando pdfLaTeX (compilador predeterminado).
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+% NewTX es una fuente tipo Times compatible con pdfLaTeX y Overleaf.
+% Para la fuente exacta Times New Roman sería necesario usar XeLaTeX.
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[a4paper,top=2.25cm,bottom=2.2cm,left=2.4cm,right=2.2cm,headheight=28pt]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage{etoolbox}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{cite}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{setspace}
+\setstretch{1.25}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\raggedbottom
+% Mantener cada rótulo junto al comienzo de su explicación o lista.
+\newcommand{\rotulo}[1]{\par\Needspace{5\baselineskip}\noindent\textbf{#1}\par\nobreak}
+\definecolor{azul}{HTML}{122A46}
+\definecolor{azulmedio}{HTML}{254B71}
+\definecolor{turquesa}{HTML}{008D95}
+\definecolor{dorado}{HTML}{E2B45E}
+\definecolor{tint}{HTML}{F3F7FA}
+\definecolor{gris}{HTML}{566579}
+\definecolor{borde}{HTML}{D8E2EB}
+\definecolor{codigo}{HTML}{F7F9FC}
+\definecolor{verdeorcid}{HTML}{A6CE39}
+% =================== DATOS EDITABLES ===================
+\newcommand{\universidad}{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}
+\newcommand{\facultad}{FACULTAD DE CIENCIAS DE LA COMPUTACIÓN}
+\newcommand{\carrera}{CARRERA DE INGENIERÍA DE SOFTWARE}
+\newcommand{\materia}{Deontología informática}
+\newcommand{\tema}{Análisis de dilemas éticos en el ejercicio profesional de la ingeniería de software}
+% Cada autor aparece con su ORCID personal y un enlace activo.
+\newcommand{\orcidperfil}[1]{\href{https://orcid.org/#1}{\tikz[baseline=-0.15em]{\node[circle,fill=verdeorcid,inner sep=1.5pt,text=white,font=\sffamily\bfseries\scriptsize]{iD};}\enspace\textcolor{black}{#1}}}
+\newcommand{\autorconorcid}[2]{#1\par{\footnotesize\orcidperfil{#2}}\par}
+\newcommand{\estudiante}{\begin{minipage}[c]{\linewidth}\setstretch{1.0}\setlength{\parskip}{0pt}
+\autorconorcid{Farinango Guandinango Freddy Vladimir}{\orciduno}\vspace{3pt}
+\autorconorcid{Urbina Romero Isaias Abraham}{\orciddos}\vspace{3pt}
+\autorconorcid{Villamarin Cuenca Ivan Andres}{\orcidtres}\vspace{3pt}
+\autorconorcid{Vinueza Sanchez Harold Nicolas}{\orcidcuatro}
+\end{minipage}}
+\newcommand{\autorespdf}{Farinango Guandinango Freddy Vladimir; Urbina Romero Isaias Abraham; Villamarin Cuenca Ivan Andres; Vinueza Sanchez Harold Nicolas}
+% Identificadores proporcionados por los autores y asociados mediante sus nombres públicos en ORCID.
+\newcommand{\orciduno}{0009-0006-5075-6158}
+\newcommand{\orciddos}{0009-0000-5249-0679}
+\newcommand{\orcidtres}{0009-0007-3366-6887}
+\newcommand{\orcidcuatro}{0009-0002-5481-4299}
+\newcommand{\docente}{Ing. Cordero Bazurto Jose Steven}
+
+\newcommand{\curso}{Octavo semestre — Paralelo A}
+\newcommand{\fechaentrega}{11 de noviembre de 2026}
+\newcommand{\lugar}{Quevedo -- Ecuador}
+\newcommand{\anio}{2026}
+% Colocar el escudo en logos/logo-uteq.png (carpeta logos junto al .tex).
+% Si no existe, se muestra un monograma decorativo.
+\newcommand{\logoinstitucional}{%
+  \IfFileExists{logos/logo-uteq.png}{\includegraphics[height=3.1cm,keepaspectratio]{logos/logo-uteq.png}}{%
+    \begin{tikzpicture}\draw[turquesa,line width=1.5pt] (0,0) circle (1.12);
+    \node[font=\bfseries\Large,text=azul] at (0,0) {UTEQ};\end{tikzpicture}}}
+% Numeraciones con punto final: 1. Introducción / 2.1. Objetivo general
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+\hypersetup{unicode=true,colorlinks=true,linkcolor=black,urlcolor=black,citecolor=black,pdftitle={\tema},pdfauthor={\autorespdf}}
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}\renewcommand{\listfigurename}{Índice de figuras}\renewcommand{\listtablename}{Índice de tablas}\renewcommand{\tablename}{Tabla}}
+\titleformat{\section}{\Large\bfseries\color{black}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries\color{black}}{\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{black}}{\thesubsubsection}{0.7em}{}
+\titlespacing*{\section}{0pt}{19pt}{10pt}
+\titlespacing*{\subsection}{0pt}{13pt}{5pt}
+\titlespacing*{\subsubsection}{0pt}{11pt}{4pt}
+\setcounter{tocdepth}{2}
+\newcommand{\cita}[1]{\cite{#1}}
+\newcommand{\citaa}[2]{\cite{#1,#2}}
+\titlecontents{section}[0em]{\vspace{4pt}\bfseries\color{black}}{\contentslabel{2.2em}}{}{\titlerule*[0.6pc]{.}\contentspage}
+\captionsetup{font=small,labelfont={bf,color=black},labelsep=period}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\textbf{UTEQ}\enspace|\enspace Ingeniería de Software}
+\fancyhead[R]{\small Informe académico}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{borde}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\footrulewidth}{0pt}
+\newtcolorbox{destacado}[1][]{enhanced,breakable,colback=tint,colframe=borde,boxrule=.6pt,arc=2mm,
+  borderline west={3pt}{0pt}{turquesa},left=13pt,right=11pt,top=9pt,bottom=9pt,#1}
+\newtcolorbox{resultado}[1][]{enhanced,breakable,colback=white,colframe=turquesa!55,boxrule=.75pt,arc=2mm,
+ title={\bfseries Resultado o hallazgo},coltitle=black,colbacktitle=tint,#1}
+\lstdefinestyle{estiloUTEQ}{backgroundcolor=\color{codigo},basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{black}\bfseries,commentstyle=\color{black}\itshape,
+  stringstyle=\color{black},numbers=left,numberstyle=\tiny\color{black},
+  numbersep=10pt,stepnumber=1,frame=single,rulecolor=\color{borde},framesep=8pt,
+  breaklines=true,breakatwhitespace=false,showstringspaces=false,tabsize=2,
+  keepspaces=true,columns=fullflexible,captionpos=b,xleftmargin=7pt,xrightmargin=3pt}
+\lstset{style=estiloUTEQ}
+\renewcommand{\lstlistingname}{Código}
+\renewcommand{\lstlistlistingname}{Índice de códigos}
+% Recuadro para una fotografía aún no disponible. Sustituir por \includegraphics.
+\newcommand{\imagenplaceholder}[1]{\begin{tikzpicture}
+ \node[draw=borde,fill=tint,rounded corners=3pt,minimum width=.89\linewidth,
+ minimum height=5.4cm,align=center,text=black,font=] {\Large\bfseries Evidencia fotográfica\\[6pt]\normalsize #1\\[7pt]\small Reemplazar con \texttt{\textbackslash includegraphics}};
+ \end{tikzpicture}}
+\begin{document}
+% ========================= PORTADA =========================
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[azul] (current page.north west) rectangle ([yshift=-1.05cm]current page.north east);
+  \fill[turquesa] ([yshift=-1.05cm]current page.north west) rectangle ([yshift=-1.12cm]current page.north east);
+  \fill[azul] ([yshift=1.05cm]current page.south west) rectangle (current page.south east);
+  \fill[dorado] ([xshift=1.8cm,yshift=1.05cm]current page.south west) rectangle
+  ([xshift=5.7cm,yshift=1.12cm]current page.south west);
+\end{tikzpicture}
+\vspace*{0.35cm}
+\begin{center}
+\logoinstitucional\\[0.55cm]
+{\normalsize\bfseries\color{black}\universidad}\\[0.16cm]
+{\small\color{black}\facultad}\\[0.12cm]
+{\small\bfseries\color{black}\carrera}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+{\small\bfseries\color{black}\MakeUppercase{INFORME ACADÉMICO}}\\[0.48cm]
+{\fontsize{23}{27}\selectfont\bfseries\color{black}\tema}\\[0.65cm]
+{\color{dorado}\rule{3.7cm}{2pt}}\\[0.35cm]
+{\large\color{black}\materia}
+\end{center}
+\vfill
+\begin{tcolorbox}[colback=tint,colframe=borde,arc=2mm,boxrule=.7pt,left=15pt,right=15pt,top=12pt,bottom=12pt]
+% Ambas columnas centradas verticalmente para alinear etiqueta y valor.
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{@{}>{\bfseries\raggedright\arraybackslash}m{3.1cm}>{\raggedright\arraybackslash}m{10.7cm}@{}}
+Estudiantes: & \estudiante\\
+Docente: & \docente\\
+Curso: & \curso\\
+Entrega: & \fechaentrega\\
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.65cm}
+\begin{center}{\bfseries\color{black}\lugar\quad |\quad\anio}\end{center}
+\vspace{0.35cm}
+\end{titlepage}
+% ========================= PRELIMINARES =========================
+\pagenumbering{roman}
+\hypersetup{pageanchor=true}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+% Activar estos índices si el documento contiene varias figuras o tablas:
+% \listoffigures\clearpage
+% \listoftables\clearpage
+% \lstlistoflistings\clearpage
+\pagenumbering{arabic}
+% ========================= CUERPO DEL INFORME =========================
+\section{Introducción}
+
+El desarrollo de software no consiste únicamente en diseñar, programar e implementar sistemas informáticos, sino que también implica asumir responsabilidades frente a las personas y organizaciones que utilizan estas soluciones. Durante el ejercicio profesional pueden presentarse situaciones en las que las decisiones tomadas afecten la privacidad, la seguridad, la propiedad intelectual y la transparencia en el trabajo.
+
+En esta actividad se analizan cinco casos relacionados con situaciones que pueden presentarse en el ámbito de la ingeniería de software. Su estudio nos permite reconocer las responsabilidades que debe asumir un profesional, considerando la importancia de actuar con honestidad, respeto, responsabilidad y compromiso con los usuarios. Para ello, cada caso se estudia de manera independiente, identificando el problema principal, las personas involucradas, los deberes profesionales y las posibles soluciones. El análisis se apoya en un marco deontológico explícito: el Código de Ética y Práctica Profesional de la ACM/IEEE-CS y la normativa ecuatoriana aplicable.
+
+El informe concluye con una reflexión crítica sobre la importancia de tomar decisiones responsables, incluso cuando existen presiones laborales o económicas, y con las conclusiones del grupo.
+
+\section{Objetivos}
+
+\subsection{Objetivo general}
+
+Analizar cinco situaciones relacionadas con la ética profesional en la ingeniería de software, mediante la identificación de dilemas, responsabilidades y posibles consecuencias, para proponer decisiones responsables que respeten los derechos de los usuarios y los principios del ejercicio profesional.
+
+\subsection{Objetivos específicos}
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt,label=\textbullet]
+    \item Identificar los dilemas presentes en cada caso, reconociendo los problemas técnicos, las personas involucradas y los posibles efectos de las decisiones.
+
+    \item Analizar las responsabilidades y deberes profesionales que debe considerar un ingeniero de software ante situaciones relacionadas con la privacidad, la seguridad, la propiedad intelectual y los conflictos de intereses, fundamentándolos en el código de ética profesional y en la normativa vigente.
+
+    \item Proponer soluciones responsables para cada situación, considerando las acciones necesarias para prevenir daños y proteger los intereses de los usuarios y las organizaciones.
+
+    \item Reflexionar críticamente sobre la importancia de actuar con honestidad, respeto y responsabilidad frente a las presiones laborales y económicas que pueden presentarse durante el ejercicio profesional.
+\end{itemize}
+
+\section{Marco teórico}
+
+\subsection{La deontología y la ética profesional}
+
+La deontología (del griego \emph{déon}, <<deber>>) es la rama de la ética que estudia los deberes y obligaciones de quienes ejercen una profesión. A diferencia de los enfoques que juzgan una acción únicamente por sus resultados, la perspectiva deontológica sostiene que ciertas obligaciones, como no engañar, respetar la confidencialidad o proteger a quienes dependen de nuestro trabajo, deben cumplirse aunque hacerlo resulte costoso o incómodo.
+
+En la ingeniería de software, estos deberes se concretan en códigos de conducta y en normas legales. Por ello, en este informe cada deber profesional se fundamenta en una cláusula concreta del código de ética o en un artículo de la normativa aplicable, y no solamente en una opinión personal.
+
+\subsection{Código de Ética de la ACM/IEEE-CS}
+
+El \emph{Software Engineering Code of Ethics and Professional Practice} \cita{ref:acm}, aprobado conjuntamente por la ACM y la IEEE Computer Society, constituye un marco de referencia para la enseñanza y la práctica ética de la ingeniería de software \cita{ref:got}. Se organiza en ocho principios: Público, Cliente y empleador, Producto, Juicio, Gestión, Profesión, Colegas y Persona. El código coloca el interés público como eje central: cuando los intereses del empleador, del cliente y de los usuarios chocan, la cláusula 1.02 exige moderarlos con el bien público.
+
+\subsection{Marco normativo ecuatoriano}
+
+Además del código de ética, los casos se analizan a la luz de las siguientes normas:
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt,label=\textbullet]
+    \item \textbf{Constitución de la República (art. 66, numeral 19):} reconoce el derecho a la protección de datos de carácter personal \cita{ref:const}.
+    \item \textbf{Ley Orgánica de Protección de Datos Personales (LOPDP, 2021):} establece los principios del tratamiento (art. 10), las condiciones del consentimiento (art. 8), las categorías especiales de datos como los de salud y los de niñas, niños y adolescentes (arts. 25 y 30), la seguridad y la protección desde el diseño (arts. 37 y 39) y la notificación de vulneraciones de seguridad (arts. 43 y 46) \cita{ref:lopdp}. El art. 43 se considera con la reforma introducida por el art. 14 de la Ley Orgánica para el Fortalecimiento de la Ciberseguridad, publicada el 22 de mayo de 2026 \cita{ref:ciber}.
+    \item \textbf{Código Orgánico de la Economía Social de los Conocimientos, Creatividad e Innovación (Código Ingenios):} protege los programas de ordenador como obras sujetas a derechos de autor \cita{ref:ingenios}.
+    \item \textbf{Código Orgánico Integral Penal (COIP, art. 320.1):} tipifica actos de corrupción en el sector privado; su aplicación requiere que concurran los elementos previstos en la norma, incluidas las funciones del sujeto y el beneficio indebido \cita{ref:coip}.
+\end{itemize}
+
+\subsection{Método de análisis}
+
+Cada caso se desarrolla en cuatro partes: (a) una síntesis de la situación; (b) la identificación del dilema ético, que separa el problema técnico de la responsabilidad ética y precisa las afectaciones concretas para cada involucrado; (c) el análisis deontológico, con cuatro deberes profesionales, cada uno con su propio fundamento; y (d) una propuesta de solución con acciones concretas y las consecuencias para todos los involucrados.
+
+\section{Desarrollo}
+
+\subsection{Caso 1: Entregar el viernes sin pruebas completas}
+
+\textbf{Síntesis del caso.} Un equipo desarrolla un sistema de citas médicas para una clínica. Cuando se acerca la fecha de entrega, el desarrollador detecta un error que permite que algunos pacientes vean información médica de otras personas. El líder del proyecto quiere entregar el viernes para evitar sanciones.
+
+\subsubsection{Identificación del dilema ético}
+
+\rotulo{¿Cuál es el problema principal?}
+
+El problema consiste en decidir si se debe entregar el sistema de citas médicas, aunque tenga un error que permita a algunos pacientes ver la información médica de otras personas, o si se debe corregir primero, aunque esto retrase la entrega. El conflicto de fondo enfrenta la \emph{privacidad y seguridad de los pacientes} con el \emph{cumplimiento de un plazo}.
+
+\rotulo{Personas involucradas y posibles afectaciones:}
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Desarrollador:} Es quien encuentra el error y debe informar sobre el problema. Si calla, se vuelve cómplice del riesgo; si informa, puede enfrentar presión del líder.
+    \item \textbf{Líder del proyecto:} Quiere entregar el sistema a tiempo para evitar sanciones contractuales.
+    \item \textbf{Clínica:} Es la encargada de utilizar el sistema y, como responsable del tratamiento de los datos de sus pacientes, podría enfrentar reclamos, sanciones y pérdida de confianza.
+    \item \textbf{Pacientes:} Sus diagnósticos, tratamientos o motivos de consulta podrían ser vistos por otras personas. Esto vulnera su confidencialidad y puede exponerlos a estigmatización o discriminación, un daño que no se puede revertir una vez que la información se conoce.
+    \item \textbf{Empresa desarrolladora:} Podría tener problemas económicos, reclamos legales y perder la confianza de sus clientes.
+\end{itemize}
+
+\textbf{Aspecto técnico:} El sistema tiene un error que permite que algunos pacientes vean información médica que no les pertenece. Debe revisarse el control de acceso a cada registro y comprobarse el aislamiento de la información entre las cuentas de los pacientes para identificar y corregir la causa.
+
+\textbf{Aspecto ético y profesional:} Aunque el error es técnico, la decisión de entregar o no el sistema es ética. El desarrollador debe decidir si entrega un sistema que sabe que tiene una falla o si informa sobre el problema y solicita tiempo para corregirlo. La fecha de entrega no debería estar por encima de la privacidad de los pacientes.
+
+\subsubsection{Análisis desde la deontología}
+
+Desde la deontología, el deber de proteger los datos de salud de los pacientes no depende de que el plazo sea cómodo: obliga aun cuando cumplirlo tenga un costo. En esta situación, el desarrollador tiene los siguientes deberes:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Proteger la confidencialidad de los datos de salud.} Los datos médicos son información especialmente sensible y su exposición causa daños difíciles de reparar. \emph{Fundamento:} la cláusula 1.03 del código ACM/IEEE permite aprobar un software solo si hay una creencia bien fundada de que es seguro y no disminuye la privacidad \cita{ref:acm}; la LOPDP clasifica los datos de salud como categoría especial (art. 25) e impone un deber de confidencialidad a quienes intervengan en su tratamiento (art. 30) \cita{ref:lopdp}.
+    \item \textbf{Ser honesto y revelar el riesgo.} Ocultar el error para cumplir la fecha convertiría una falla técnica en una decisión deshonesta. \emph{Fundamento:} la cláusula 1.04 exige comunicar a las personas apropiadas cualquier peligro potencial para el usuario, y la 2.06 obliga a documentar y reportar prontamente al cliente o empleador los problemas del proyecto \cita{ref:acm}.
+    \item \textbf{Actuar con responsabilidad frente a las consecuencias.} El profesional responde por el efecto de su trabajo, no solo por cumplir una tarea. \emph{Fundamento:} la cláusula 1.02 pide moderar los intereses del empleador y del cliente con el bien público \cita{ref:acm}; la LOPDP establece la responsabilidad proactiva y demostrada del responsable del tratamiento (art. 10, literal k) \cita{ref:lopdp}.
+    \item \textbf{Garantizar la calidad del trabajo mediante pruebas.} Un sistema con una falla conocida que expone datos de salud no debe declararse apto para producción hasta corregirla y completar las pruebas de seguridad pertinentes. \emph{Fundamento:} la cláusula 3.10 exige asegurar pruebas, depuración y revisión adecuadas \cita{ref:acm}; la LOPDP obliga a aplicar medidas de seguridad acordes al riesgo y la protección de datos desde el diseño (arts. 37 y 39) \cita{ref:lopdp}.
+\end{enumerate}
+
+\subsubsection{Propuesta de solución}
+
+Consideramos que no se debe entregar el sistema completo hasta solucionar el error, porque la información de los pacientes podría quedar expuesta.
+
+Las acciones que realizaríamos serían:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item Documentar cómo ocurre el error, con pasos reproducibles, y dejar constancia por escrito.
+    \item Informar al líder del proyecto y explicar que el problema afecta la privacidad de los pacientes y puede generar responsabilidad legal para la clínica y la empresa.
+    \item Revisar los registros de acceso para verificar si el error ya fue aprovechado.
+    \item Trabajar con el equipo para corregirlo y realizar nuevas pruebas con diferentes cuentas, para comprobar que cada paciente solamente pueda ver su propia información.
+    \item Informar a la clínica sobre el problema y acordar una alternativa que reduzca el impacto del retraso: una entrega parcial que excluya las funciones afectadas y cuya independencia se haya verificado, o una nueva fecha con un plan de contingencia para gestionar las citas.
+    \item Si el líder insiste en activar el sistema con la falla conocida, escalar el riesgo a seguridad o a la dirección y dejar constancia de la recomendación, manteniendo informado al cliente por los canales establecidos.
+\end{enumerate}
+
+\rotulo{Posibles consecuencias:}
+
+\textbf{Para el desarrollador,} podría existir presión por parte de su jefe debido al retraso de la entrega. Sin embargo, demostraría que es una persona responsable y comprometida con la seguridad de los pacientes, y su documentación lo respaldaría.
+
+\textbf{Para el líder del proyecto y la empresa,} podría existir un retraso, una posible sanción contractual y algunos gastos adicionales. A pesar de ello, evitarían problemas mayores, como la exposición de información médica, reclamos legales y la pérdida de confianza de sus clientes.
+
+\textbf{Para la clínica,} el retraso puede afectar temporalmente la gestión de sus citas, pero recibiría un sistema con la falla corregida y verificada, lo que reduciría el riesgo de exposición de datos y permitiría organizar una puesta en funcionamiento responsable.
+
+\textbf{Para los pacientes,} la corrección protege su confidencialidad desde el primer día de uso del sistema.
+
+
+\subsection{Caso 2: Vender los datos de los usuarios}
+
+\textbf{Síntesis del caso.} Una aplicación utilizada por muchos adolescentes recopila ubicación, horarios de conexión e intereses. El departamento de marketing propone vender esos datos a empresas anunciantes para conseguir ingresos y mantener la aplicación funcionando.
+
+\subsubsection{Identificación del dilema ético}
+
+\rotulo{¿Cuál es el problema principal?}
+
+El problema consiste en decidir si se deben vender los datos personales de los usuarios para conseguir dinero y mantener la aplicación funcionando, o buscar otra forma de obtener ingresos sin poner en riesgo la privacidad de las personas. El conflicto enfrenta la \emph{sostenibilidad económica} con la \emph{privacidad y el consentimiento informado}.
+
+La situación es preocupante porque muchos usuarios son adolescentes y sus datos personales podrían llegar a empresas que los utilicen con fines publicitarios.
+
+\rotulo{Personas involucradas y posibles afectaciones:}
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Desarrollador:} Debe ayudar a proteger la información de los usuarios y puede ser quien implemente técnicamente la recolección y el envío de los datos.
+    \item \textbf{Departamento de marketing:} Propone vender los datos para conseguir ingresos.
+    \item \textbf{Empresa tecnológica:} Necesita dinero para mantener la aplicación, pero asumiría riesgos legales y de reputación.
+    \item \textbf{Usuarios:} Pueden perder el control sobre su información personal. La ubicación y los horarios de conexión de un adolescente permiten inferir dónde vive, estudia y cuándo está solo, lo que puede exponerlo a riesgos de seguridad además de publicidad dirigida.
+    \item \textbf{Empresas anunciantes:} Comprarían los datos para conocer los intereses de los usuarios y ofrecerles publicidad.
+\end{itemize}
+
+\textbf{Aspecto técnico:} La aplicación recopila información como la ubicación, los horarios de conexión y los intereses de los usuarios. Estos datos deben almacenarse y utilizarse de forma segura, y limitarse a lo necesario para que la aplicación funcione.
+
+\textbf{Aspecto ético y profesional:} La empresa quiere obtener dinero utilizando información personal sin garantizar que los usuarios comprendan realmente cómo se utilizarán sus datos. Esto es especialmente delicado porque muchos son menores de edad.
+
+\subsubsection{Análisis desde la deontología}
+
+Desde la deontología, la necesidad de obtener ingresos no justifica tratar a los usuarios como un producto: la privacidad es un derecho de las personas y un deber del profesional que diseña el sistema. En esta situación se deben considerar los siguientes deberes:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Respetar la privacidad y la minimización de datos.} Solo debe recopilarse lo estrictamente necesario para la finalidad declarada. \emph{Fundamento:} la LOPDP establece los principios de finalidad y de pertinencia y minimización (art. 10, literales d y e) y la protección de datos por defecto (art. 39) \cita{ref:lopdp}; la cláusula 1.03 del código ACM/IEEE rechaza software que disminuya la privacidad \cita{ref:acm}.
+    \item \textbf{Ser transparente.} Los usuarios deben saber qué datos se recopilan, con qué fin y a quién se comunicarán. \emph{Fundamento:} el art. 12 de la LOPDP reconoce el derecho a la información, incluidas las transferencias y la elaboración de perfiles, y la cláusula 1.06 del código exige evitar el engaño \citaa{ref:lopdp}{ref:acm}.
+    \item \textbf{Respetar el consentimiento, con protección reforzada para menores.} El consentimiento debe ser libre, específico, informado e inequívoco (art. 8), y la comunicación de datos a terceros requiere ese consentimiento cuando corresponda, salvo las excepciones legales aplicables (art. 33). Los datos de niñas, niños y adolescentes son una categoría especial (art. 25): los adolescentes pueden consentir directamente desde los 15 años siempre que se les especifiquen con claridad los fines, y por debajo de esa edad se requiere a su representante legal (arts. 21 y 24) \cita{ref:lopdp}.
+    \item \textbf{Evitar causar daños.} El profesional debe anticipar los usos que podrían perjudicar a los usuarios, como el rastreo o la elaboración de perfiles. \emph{Fundamento:} la cláusula 1.02 pide moderar los intereses del empleador con el bien público, y el art. 16 de la LOPDP reconoce el derecho de oposición a la mercadotecnia directa y a la elaboración de perfiles \citaa{ref:acm}{ref:lopdp}.
+\end{enumerate}
+
+\subsubsection{Propuesta de solución}
+
+No apoyaríamos la venta de los datos personales de los usuarios sin garantías claras y sin cumplir las condiciones legales correspondientes. Existen otras formas de conseguir ingresos sin afectar su privacidad.
+
+Las acciones que propondríamos serían:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item Explicar al departamento de marketing los riesgos legales, reputacionales y de seguridad de compartir información personal.
+    \item Revisar las condiciones de privacidad de la aplicación y verificar que el consentimiento cumpla los requisitos del art. 8 de la LOPDP.
+    \item Proponer una versión de pago con funciones adicionales para quienes deseen utilizarla.
+    \item Ofrecer publicidad contextual relacionada con los contenidos educativos, sin rastrear a los usuarios ni crear perfiles personales.
+    \item Comparar los costos e ingresos previstos de estas alternativas y acordar un plan gradual que mantenga las funciones educativas esenciales, sin asumir que producirán ingresos suficientes de inmediato.
+    \item Guardar únicamente la información necesaria para las finalidades legítimas del servicio y suprimir la ubicación precisa si no es indispensable, respetando las obligaciones legales de conservación aplicables.
+    \item Consultar con los responsables legales para verificar que cualquier uso de los datos cumpla con las normas correspondientes, especialmente cuando se trata de menores de edad.
+\end{enumerate}
+
+\rotulo{Posibles consecuencias:}
+
+\textbf{Para el desarrollador,} podría existir desacuerdo con el departamento de marketing porque sus propuestas podrían generar menos ingresos al principio.
+
+\textbf{Para la empresa,} buscar otras fuentes de ingresos podría tomar más tiempo. Sin embargo, permitiría mantener la confianza de los usuarios y de sus familias, y reducir los riesgos legales relacionados con el uso inadecuado de datos de menores.
+
+\textbf{Para los usuarios,} conservarían el control sobre su información y no quedarían expuestos a perfiles comerciales ni a rastreo de su ubicación.
+
+\textbf{Para los anunciantes,} la publicidad contextual y educativa sigue siendo posible, aunque con menor capacidad de segmentación.
+
+
+\subsection{Caso 3: Reutilizar código que no es nuestro}
+
+\textbf{Síntesis del caso.} El equipo debe desarrollar un módulo con varias funciones que tomaría bastante tiempo hacer desde cero. Un compañero propone reutilizar el código que escribió para un cliente anterior, sin contar con permiso para hacerlo.
+
+\subsubsection{Identificación del dilema ético}
+
+\rotulo{¿Cuál es el problema principal?}
+
+El problema consiste en decidir si se debe utilizar un código desarrollado para otro cliente sin tener permiso, o crear uno nuevo que respete los derechos de su propietario. El conflicto enfrenta el \emph{ahorro de tiempo} con el respeto a la \emph{propiedad intelectual y a la confidencialidad}.
+
+Aunque el compañero haya escrito ese código, no significa que pueda utilizarlo libremente. Según el contrato y la relación laboral, los derechos sobre el código pueden pertenecer al cliente anterior o a la empresa para la que se desarrolló, o existir acuerdos que impidan compartirlo.
+
+\rotulo{Personas involucradas y posibles afectaciones:}
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Compañero desarrollador:} Es quien propone utilizar el código de su antiguo proyecto. Podría incumplir sus acuerdos de confidencialidad sin advertirlo.
+    \item \textbf{Equipo de desarrollo:} Debe decidir si utiliza ese código o crea una solución propia, y comparte la responsabilidad de lo que incorpore.
+    \item \textbf{Empresa actual:} Podría enfrentar reclamos por infracción de derechos de autor o por incumplimiento contractual, además de daño a su reputación.
+    \item \textbf{Cliente anterior:} Podría ver vulnerada la confidencialidad de su proyecto o la titularidad de un desarrollo por el que pagó, al aparecer su trabajo en el producto de otro cliente.
+    \item \textbf{Cliente actual:} Espera recibir un sistema desarrollado correctamente y sin problemas relacionados con los derechos de autor; podría verse involucrado en un conflicto que no provocó.
+\end{itemize}
+
+\textbf{Aspecto técnico:} El equipo necesita desarrollar un módulo que requiere varias funciones y que tomaría bastante tiempo realizar desde cero.
+
+\textbf{Aspecto ético y profesional:} Utilizar código de otro proyecto sin permiso puede ser incorrecto porque no se están respetando los derechos de su propietario ni los acuerdos establecidos anteriormente. Haber escrito el código no significa necesariamente tener autorización para reutilizarlo.
+
+\subsubsection{Análisis desde la deontología}
+
+Desde la deontología, el trabajo de otros profesionales debe respetarse aun cuando reutilizarlo ahorre tiempo y esfuerzo. Antes de incorporar código a un proyecto es necesario conocer su origen y las condiciones que permiten utilizarlo. Los deberes del desarrollador son los siguientes:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Respetar la propiedad intelectual.} No se debe copiar ni utilizar código que pertenece a otro proyecto sin autorización. \emph{Fundamento:} la cláusula 2.06 del código ACM/IEEE obliga a reportar al empleador o cliente cuando un proyecto pueda violar la propiedad intelectual, y la 2.03 exige usar la propiedad del cliente o empleador solo de forma autorizada \cita{ref:acm}; el Código Ingenios protege los programas de ordenador como obras sujetas a derechos de autor \cita{ref:ingenios}.
+    \item \textbf{Ser honesto sobre el origen del código.} Debe informarse de dónde proviene el código y no presentarlo como si fuera un recurso libre o propio. \emph{Fundamento:} la cláusula 1.06 exige evitar el engaño en las declaraciones sobre software y documentos relacionados, y la 2.02 prohíbe usar a sabiendas software obtenido o retenido de forma ilegal o poco ética \cita{ref:acm}.
+    \item \textbf{Respetar la confidencialidad.} No se deben compartir información ni materiales de trabajos anteriores que deben mantenerse privados. \emph{Fundamento:} la cláusula 2.05 exige mantener privada la información confidencial obtenida en el trabajo profesional, de acuerdo con la ley \cita{ref:acm}.
+    \item \textbf{Cumplir los acuerdos.} Deben respetarse las condiciones establecidas con los clientes y las empresas para las que se ha trabajado. \emph{Fundamento:} el principio 2 del código (Cliente y empleador) obliga a actuar en el mejor interés de clientes y empleadores de forma coherente con el interés público \cita{ref:acm}.
+\end{enumerate}
+
+\subsubsection{Propuesta de solución}
+
+No aceptaríamos utilizar el código sin autorización. Buscaríamos otra solución que permita completar el proyecto sin perjudicar al cliente anterior.
+
+Las acciones que realizaríamos serían:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item Preguntar al compañero sobre el origen del código y las condiciones bajo las cuales fue desarrollado.
+    \item Informar al líder del proyecto que no se tiene permiso para utilizar ese módulo.
+    \item Revisar los acuerdos del proyecto anterior para conocer quién tiene los derechos sobre el código.
+    \item Consultar si es posible obtener una autorización escrita del propietario.
+    \item Si no se consigue el permiso, desarrollar un módulo propio o utilizar una alternativa de código abierto cuya licencia permita incorporarla al proyecto, verificando que la licencia permita el uso previsto y cumpliendo sus condiciones, incluidas las obligaciones de atribución o distribución que correspondan.
+    \item Si la alternativa requiere más tiempo, informar al cliente y acordar un ajuste de plazo o alcance, sin incorporar el módulo no autorizado.
+    \item Documentar el origen y las condiciones de uso del código que finalmente se incorpore.
+\end{enumerate}
+
+\rotulo{Posibles consecuencias:}
+
+\textbf{Para el desarrollador,} podría significar más trabajo y tiempo para completar el módulo. También podría existir desacuerdo con su compañero. Sin embargo, estaría respetando el trabajo ajeno y evitando problemas posteriores.
+
+\textbf{Para la empresa,} podría aumentar el tiempo de desarrollo. A pesar de ello, evitaría conflictos con el cliente anterior y posibles reclamos por utilizar código sin autorización.
+
+\textbf{Para el compañero,} se evita que quede expuesto a un reclamo por incumplir sus acuerdos de confidencialidad.
+
+\textbf{Para el cliente anterior,} se protege la titularidad y la confidencialidad de su proyecto.
+
+\textbf{Para el cliente actual,} recibirá un producto con el origen del código documentado y las autorizaciones o licencias verificadas, reduciendo el riesgo de reclamos de terceros.
+
+
+\subsection{Caso 4: Elegir al proveedor de un familiar}
+
+\textbf{Síntesis del caso.} Una persona responsable de seleccionar un proveedor de servicios en la nube recibe una oferta de su primo, quien administra una de las empresas candidatas: le ofrece dinero a cambio de que lo elija.
+
+\subsubsection{Identificación del dilema ético}
+
+\rotulo{¿Cuál es el problema principal?}
+
+El problema consiste en decidir si se debe contratar a la empresa de un familiar para recibir dinero a cambio, o elegir al proveedor que realmente ofrece mejores servicios y beneficios para la empresa. Se trata de un \emph{conflicto de intereses} agravado por un ofrecimiento de \emph{soborno}.
+
+Hay un conflicto de intereses cuando un beneficio personal, aquí un vínculo familiar y dinero, puede distorsionar una decisión que debe tomarse pensando en los intereses de la organización.
+
+\rotulo{Personas involucradas y posibles afectaciones:}
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Responsable de selección:} Es quien debe evaluar a los proveedores y elegir la mejor opción. Si acepta el dinero, compromete su integridad y podría enfrentar sanciones laborales y responsabilidad penal.
+    \item \textbf{Primo:} Quiere conseguir el contrato ofreciendo dinero a cambio.
+    \item \textbf{Empresa empleadora:} Necesita contratar un buen servicio en la nube; una mala elección le significaría sobrecostos, menor seguridad y dependencia de un proveedor inadecuado.
+    \item \textbf{Otros proveedores:} Esperan que sus propuestas sean evaluadas de manera justa; un proceso sesgado los perjudica en su oportunidad comercial.
+    \item \textbf{Usuarios del sistema:} Necesitan que el servicio contratado sea seguro y funcione correctamente, porque sus datos estarán alojados en él.
+\end{itemize}
+
+\textbf{Aspecto técnico:} Se deben comparar los servicios ofrecidos por los proveedores, teniendo en cuenta el precio, la seguridad, el almacenamiento y las características de cada uno.
+
+\textbf{Aspecto ético y profesional:} El responsable podría favorecer a su familiar para obtener dinero, aunque su empresa ofrezca un servicio más caro y de menor calidad. Esto significa utilizar su cargo para conseguir un beneficio personal y perjudicar los intereses de la organización.
+
+\subsubsection{Análisis desde la deontología}
+
+Desde la deontología, las decisiones laborales deben tomarse con honestidad e imparcialidad. Tener una relación familiar con uno de los proveedores no debe convertirse en una razón para favorecerlo, y menos cuando existe un beneficio económico personal. Los deberes del responsable son los siguientes:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Ser imparcial.} Debe evaluar a todos los proveedores con los mismos criterios, sin favorecer a familiares o amigos. \emph{Fundamento:} la cláusula 4.03 del código ACM/IEEE exige mantener la objetividad profesional al evaluar software o documentos relacionados \cita{ref:acm}.
+    \item \textbf{Ser honesto y rechazar el soborno.} Debe rechazar el dinero que le ofrecen a cambio de contratar a su primo. \emph{Fundamento:} la cláusula 4.04 prohíbe participar en prácticas financieras engañosas como el soborno \cita{ref:acm}; además, aceptar un beneficio indebido para favorecer una contratación podría generar responsabilidad penal si concurren los elementos del art. 320.1 del COIP \cita{ref:coip}.
+    \item \textbf{Ser transparente respecto al conflicto de intereses.} Debe informar a sus superiores que uno de los proveedores es administrado por un familiar. \emph{Fundamento:} la cláusula 4.05 exige revelar a todas las partes interesadas los conflictos de intereses que no puedan evitarse \cita{ref:acm}.
+    \item \textbf{Actuar con responsabilidad hacia la organización y sus usuarios.} Debe favorecer un proceso que seleccione la opción que realmente beneficie a la empresa y a quienes dependerán del servicio. \emph{Fundamento:} el principio 2 exige actuar en el mejor interés del cliente y del empleador, de forma coherente con el interés público; la cláusula 1.02 pide moderar los intereses del profesional, del empleador, del cliente y de los usuarios con el bien público \cita{ref:acm}.
+\end{enumerate}
+
+\subsubsection{Propuesta de solución}
+
+El responsable de selección no debería aceptar el dinero de su primo ni recomendar su empresa solamente por la relación familiar. La mejor decisión es elegir al proveedor que ofrezca mejores beneficios para la organización.
+
+Las acciones que realizaríamos serían:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item Rechazar la propuesta económica del primo y no elaborar ni respaldar un informe que altere los resultados de la evaluación.
+    \item Informar de inmediato a los superiores sobre la relación familiar y sobre el ofrecimiento de dinero, siguiendo los procedimientos internos de la empresa.
+    \item Apartarse de la evaluación y decisión del procedimiento de selección.
+    \item Solicitar que un responsable independiente compare todas las propuestas con los mismos criterios definidos de antemano: precio, seguridad, almacenamiento y soporte.
+    \item Solicitar que los resultados de la evaluación y la decisión adoptada por el responsable independiente queden documentados de forma clara y transparente.
+\end{enumerate}
+
+\rotulo{Posibles consecuencias:}
+
+\textbf{Para el responsable de selección,} podría existir un desacuerdo con su familiar o perder la oportunidad de recibir dinero. Sin embargo, estaría actuando correctamente, manteniendo su honestidad y evitando un riesgo penal y laboral.
+
+\textbf{Para la empresa,} se conseguiría contratar un servicio que ofrezca mejores condiciones y se evitarían gastos innecesarios, decisiones injustas y problemas relacionados con la falta de transparencia.
+
+\textbf{Para el primo,} perdería la ventaja indebida y su participación quedaría sujeta a las reglas de contratación y a las medidas que adopte la organización.
+
+\textbf{Para los otros proveedores,} se garantizaría un proceso justo.
+
+\textbf{Para los usuarios,} un servicio seleccionado mediante criterios técnicos documentados ofrece mejores condiciones para la seguridad y el funcionamiento del sistema.
+
+
+\subsection{Caso 5: El sistema que no estaba listo}
+
+\textbf{Síntesis del caso.} Un equipo desarrolla un sistema educativo para una institución. El desarrollador descubre una vulnerabilidad que podría permitir que personas no autorizadas accedan a información de los estudiantes. El responsable del proyecto ordena entregar el sistema en la fecha prevista y no comunicar el problema al cliente.
+
+\subsubsection{Identificación del dilema ético}
+
+\rotulo{¿Cuál es el problema principal?}
+
+El problema consiste en decidir si se debe entregar el sistema educativo aunque tenga un error de seguridad, siguiendo las instrucciones del jefe, o corregirlo antes de entregarlo para proteger la información de los estudiantes.
+
+A diferencia del Caso 1, aquí no solo existe presión por el plazo: hay una \emph{orden expresa de ocultar} el problema al cliente. El conflicto enfrenta la \emph{obediencia al superior} con el deber de \emph{revelar riesgos y proteger a los usuarios}.
+
+\rotulo{Personas involucradas y posibles afectaciones:}
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Desarrollador:} Es quien encuentra el error y debe informar sobre el riesgo. Desobedecer una orden puede traerle represalias; obedecerla lo vuelve partícipe del ocultamiento.
+    \item \textbf{Responsable del proyecto:} Quiere cumplir con la fecha de entrega y evitar pérdidas económicas, y por eso entregaría el sistema sin corregir el problema.
+    \item \textbf{Empresa desarrolladora:} Podría tener pérdidas económicas, responsabilidad legal y pérdida de reputación por entregar un sistema inseguro y haberlo ocultado.
+    \item \textbf{Institución educativa:} Es el cliente que recibirá el sistema; al ocultársele la falla, no puede tomar una decisión informada ni adoptar medidas propias de protección.
+    \item \textbf{Estudiantes:} Podrían verse afectados si personas desconocidas acceden a su información personal; muchos pueden ser menores de edad, cuyos datos tienen protección reforzada.
+\end{itemize}
+
+\textbf{Aspecto técnico:} El sistema tiene una vulnerabilidad que podría permitir el acceso no autorizado a información de los estudiantes; el enunciado no confirma que ya se haya producido una exposición de datos.
+
+\textbf{Aspecto ético y profesional:} El responsable quiere ocultar el problema para entregar el sistema a tiempo. El desarrollador debe decidir si obedece esa orden o actúa de manera responsable para proteger a los usuarios. Ocultar la vulnerabilidad también impediría que el cliente conozca el riesgo y tome una decisión informada.
+
+\subsubsection{Análisis desde la deontología}
+
+Desde la deontología, un profesional debe cumplir con sus deberes incluso cuando otras personas le pidan actuar de manera diferente. Las órdenes de un superior no justifican ocultar un problema que puede perjudicar a los usuarios. Los deberes del desarrollador son los siguientes:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Proteger a los usuarios.} Debe evitar que la información personal de los estudiantes pueda ser vista por personas desconocidas. \emph{Fundamento:} la cláusula 1.03 del código ACM/IEEE exige una creencia bien fundada de que el software es seguro y no disminuye la privacidad \cita{ref:acm}; la LOPDP exige medidas de seguridad adecuadas al riesgo (arts. 10 literal j y 37) y trata los datos de menores como categoría especial (art. 25) \cita{ref:lopdp}.
+    \item \textbf{Ser honesto.} No debe ocultar el error y debe comunicarlo a las personas responsables. \emph{Fundamento:} la cláusula 1.06 exige evitar el engaño y la 1.04 obliga a comunicar los peligros potenciales a las personas o autoridades apropiadas \cita{ref:acm}.
+    \item \textbf{Informar sobre los riesgos para que se decida con conocimiento.} Debe explicar la gravedad de la vulnerabilidad para que el cliente y la empresa puedan tomar decisiones adecuadas. \emph{Fundamento:} la cláusula 2.06 obliga a identificar, documentar y reportar prontamente los problemas del proyecto \cita{ref:acm}. Detectar una vulnerabilidad no demuestra, por sí solo, que los datos ya hayan sido comprometidos. Si se constata una vulneración, el responsable del tratamiento deberá cumplir las notificaciones que correspondan. El art. 43 de la LOPDP, reformado en 2026, exige notificar a la autoridad de protección de datos, al organismo de regulación y control competente y al CSIRT correspondiente, tan pronto sea posible y dentro del término de cinco días desde que se tenga constancia, salvo que sea improbable que constituya un riesgo para los derechos y libertades. El art. 46 regula la comunicación a los titulares, sin dilación y dentro del término de tres días desde que se conozca el riesgo, con sus excepciones legales \citaa{ref:lopdp}{ref:ciber}.
+    \item \textbf{Realizar un trabajo seguro y no ceder ante órdenes indebidas.} Debe comprobar que el sistema funcione correctamente y que no existan fallas de seguridad importantes antes de ponerlo en uso. \emph{Fundamento:} la cláusula 3.10 exige pruebas, depuración y revisión adecuadas, y la cláusula 5.11 establece que los responsables y líderes no deben pedir a un ingeniero de software que actúe contra el código; por ello, la orden recibida no justifica ocultar el problema \cita{ref:acm}.
+\end{enumerate}
+
+\subsubsection{Propuesta de solución}
+
+No pondríamos en funcionamiento las funciones afectadas antes de corregir y verificar la vulnerabilidad. Propondríamos al cliente un nuevo plazo o una entrega parcial cuyas funciones independientes se hayan evaluado, para proteger la información de los estudiantes y atender el compromiso contractual de forma transparente.
+
+Las acciones que realizaríamos serían:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item Registrar el error encontrado y explicar cómo puede afectar a los estudiantes.
+    \item Informar al responsable del proyecto sobre el problema, preferiblemente dejando constancia escrita de la comunicación y de la orden recibida.
+    \item Proponer una solución y trabajar con el equipo para corregir la vulnerabilidad.
+    \item Realizar nuevas pruebas para comprobar que ya no sea posible acceder a información sin autorización.
+    \item Informar al cliente sobre la situación y explicar si es necesario retrasar la entrega.
+    \item Si el jefe insiste en ocultar el problema, comunicar la situación a los responsables correspondientes dentro de la empresa, como el área de seguridad, el delegado de protección de datos o la dirección.
+    \item Si la dirección también se niega a actuar y existe riesgo real para los estudiantes, evaluar con asesoría legal el reporte a la autoridad competente, como la Superintendencia de Protección de Datos Personales. Si se identifica una vulneración de seguridad de datos personales, el responsable del tratamiento deberá cumplir las obligaciones de notificación que correspondan conforme a los arts. 43 y 46 de la LOPDP \citaa{ref:lopdp}{ref:ciber}.
+    \item Evitar divulgar información sobre la vulnerabilidad a personas no autorizadas, para no aumentar el riesgo para los estudiantes.
+\end{enumerate}
+
+\rotulo{Posibles consecuencias:}
+
+\textbf{Para el desarrollador,} podría existir presión por parte de su jefe o problemas por no cumplir con la fecha establecida. Sin embargo, demostraría que es un profesional responsable y honesto, que no oculta situaciones que pueden afectar a otras personas, y la constancia escrita permitiría acreditar que comunicó el riesgo y propuso medidas, aunque no eliminaría la posibilidad de conflictos o represalias.
+
+\textbf{Para el responsable del proyecto y la empresa,} podría existir un retraso y gastos adicionales. A pesar de ello, evitarían problemas mayores, como la exposición de información personal, sanciones y la pérdida de confianza del cliente, que sería mucho más grave si se descubriera que la falla fue ocultada deliberadamente.
+
+\textbf{Para la institución educativa,} podría tener que ajustar su calendario, pero recibiría un sistema con la falla corregida y verificada y podría decidir con información completa.
+
+\textbf{Para los estudiantes,} se protege su información personal y se evita que sus datos queden al alcance de personas desconocidas.
+
+\clearpage
+\section{Reflexión crítica}
+
+\subsection{Síntesis comparativa de los casos}
+
+La Tabla~\ref{tab:sintesis-casos} resume el conflicto central de cada caso, el deber que consideramos prioritario y el marco que lo respalda.
+
+\begin{table}[H]
+\centering
+\caption{Síntesis comparativa de los dilemas éticos y sus fundamentos}
+\label{tab:sintesis-casos}
+\small
+\setstretch{1.0}
+\renewcommand{\arraystretch}{1.1}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{1.5cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Caso} & \textbf{Conflicto central} & \textbf{Deber prioritario} & \textbf{Marco de referencia} \\
+\midrule
+1 & Plazo de entrega frente a la privacidad de datos de salud & Proteger la confidencialidad y probar antes de entregar & ACM/IEEE 1.03, 3.10; LOPDP arts. 25, 30 \\
+2 & Ingresos de la empresa frente a la privacidad de adolescentes & Consentimiento informado y minimización de datos & LOPDP arts. 8, 10, 21, 33 \\
+3 & Ahorro de tiempo frente a derechos de autor y confidencialidad & Respetar la propiedad intelectual y pedir autorización & ACM/IEEE 2.03, 2.05, 2.06; Código Ingenios \\
+4 & Beneficio personal frente a imparcialidad & Rechazar el soborno y declarar el conflicto de intereses & ACM/IEEE 4.03 a 4.05; COIP art. 320.1 \\
+5 & Obediencia al jefe frente a revelar un riesgo & Informar la vulnerabilidad y no ocultarla & ACM/IEEE 1.04, 2.06 y 5.11; LOPDP arts. 43 y 46 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Reflexión del grupo}
+
+Si estuviéramos en el lugar del desarrollador, priorizaríamos la protección de las personas y comunicaríamos los riesgos con honestidad. En los sistemas médico y educativo, documentaríamos la falla, informaríamos por escrito al responsable y al cliente y solicitaríamos corregirla antes de activar las funciones afectadas. Propondríamos una entrega parcial segura o un nuevo plazo acordado y verificaríamos la corrección mediante pruebas. Si se insistiera en ocultar el problema, acudiríamos a los canales internos correspondientes.
+
+Ante los otros dilemas, buscaríamos ingresos que respeten la privacidad de los adolescentes, utilizaríamos código propio o autorizado y rechazaríamos cualquier comisión personal, declarando el vínculo familiar y apartándonos de esa selección.
+
+Actuaríamos así porque la confidencialidad, la honestidad y la imparcialidad son deberes profesionales que no dependen de la conveniencia económica. Reconocemos que esta postura puede causar retrasos, conflictos laborales o pérdidas económicas reales; por ello, también debemos proponer alternativas y explicar sus consecuencias. Sin embargo, esas presiones no justifican trasladar riesgos conocidos a usuarios que desconocen el problema. Como futuros ingenieros, queremos responder por nuestras decisiones y contribuir a organizaciones donde comunicar un riesgo sea parte del trabajo responsable.
+
+\section{Conclusiones}
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item En los cinco casos existen problemas técnicos u organizacionales, pero el dilema ético surge al decidir qué hacer frente a ellos. La deontología orienta esa decisión mediante deberes como proteger los datos, comunicar los riesgos, respetar los derechos ajenos y actuar con imparcialidad.
+    \item Fundamentar los deberes en el código ACM/IEEE y en la normativa ecuatoriana (LOPDP, Código Ingenios y COIP) permite pasar de la opinión personal a una justificación verificable, y permite reconocer que algunas decisiones también pueden generar consecuencias legales, según los hechos y las condiciones de cada norma.
+    \item Las soluciones más responsables combinan comunicación honesta, documentación escrita, alternativas viables (entregas parciales, modelos de ingresos sin rastreo, código con licencia adecuada, evaluaciones con criterios comunes) y escalamiento interno antes de recurrir a instancias externas.
+    \item Actuar correctamente puede ocasionar retrasos, pérdidas económicas o conflictos laborales importantes. Por ello, las propuestas deben reconocer esos costos y buscar alternativas viables, sin trasladar a terceros riesgos conocidos que puedan vulnerar sus derechos.
+    \item La responsabilidad no recae solo en el individuo: las organizaciones deben crear condiciones, como canales de reporte, revisiones de seguridad y políticas de conflicto de intereses, para que hacer lo correcto no dependa del heroísmo de una persona.
+\end{enumerate}
+
+\clearpage
+\phantomsection
+\renewcommand{\refname}{Referencias bibliográficas}
+\addcontentsline{toc}{section}{Referencias bibliográficas}
+\begin{thebibliography}{9}
+
+\bibitem{ref:acm}
+IEEE-CS/ACM Joint Task Force on Software Engineering Ethics and Professional Practices,
+\emph{Software Engineering Code of Ethics and Professional Practice}, ver. 5.2, 1999.
+[En l\'inea]. Disponible: \url{https://www.computer.org/education/code-of-ethics}.
+Consultado: 6 de noviembre de 2026.
+
+\bibitem{ref:got}
+D. Gotterbarn, K. Miller y S. Rogerson,
+``Software engineering code of ethics is approved,''
+\emph{Commun. ACM}, vol. 42, n.\textsuperscript{o} 10, pp. 102--107, oct. 1999,
+doi: \href{https://doi.org/10.1145/317665.317682}{10.1145/317665.317682}.
+
+\bibitem{ref:const}
+Asamblea Constituyente del Ecuador,
+\emph{Constituci\'on de la Rep\'ublica del Ecuador},
+Registro Oficial n.\textsuperscript{o} 449, 20 de octubre de 2008, art. 66, num. 19.
+[En l\'inea]. Disponible: \url{https://www.asambleanacional.gob.ec/sites/default/files/documents/old/constitucion_de_bolsillo.pdf}.
+Consultado: 6 de noviembre de 2026.
+
+\bibitem{ref:lopdp}
+Asamblea Nacional del Ecuador,
+\emph{Ley Org\'anica de Protecci\'on de Datos Personales},
+Registro Oficial, Suplemento n.\textsuperscript{o} 459, 26 de mayo de 2021.
+[En l\'inea]. Disponible: \url{https://www.gob.ec/sites/default/files/regulations/2025-01/01%20Ley%20Org%C3%A1nica%20de%20Protecci%C3%B3n%20de%20Datos%20Personales.pdf}.
+Consultado: 6 de noviembre de 2026.
+
+\bibitem{ref:ciber}
+Asamblea Nacional del Ecuador,
+\emph{Ley Org\'anica para el Fortalecimiento de la Ciberseguridad},
+Registro Oficial, Quinto Suplemento n.\textsuperscript{o} 290, 22 de mayo de 2026,
+art. 14, reformatorio del primer inciso del art. 43 de la Ley Org\'anica de Protecci\'on de Datos Personales.
+[En l\'inea]. Disponible: \url{https://www.registroficial.gob.ec/quinto-suplemento-no-290/}.
+Consultado: 6 de noviembre de 2026.
+
+\bibitem{ref:ingenios}
+Asamblea Nacional del Ecuador,
+\emph{C\'odigo Org\'anico de la Econom\'ia Social de los Conocimientos, Creatividad e Innovaci\'on},
+Registro Oficial, Suplemento n.\textsuperscript{o} 899, 9 de diciembre de 2016.
+[En l\'inea]. Disponible: \url{https://www.asambleanacional.gob.ec/sites/default/files/private/asambleanacional/filesasambleanacionalnameuid-29/Leyes%202013-2017/133-conocimiento/ro-cod-econ-conoc-899-sup-09-12-2016.pdf}.
+Consultado: 6 de noviembre de 2026.
+
+\bibitem{ref:coip}
+Asamblea Nacional del Ecuador,
+\emph{C\'odigo Org\'anico Integral Penal},
+Registro Oficial, Suplemento n.\textsuperscript{o} 180, 10 de febrero de 2014,
+art. 320.1, incorporado por el art. 15 de la \emph{Ley Org\'anica Reformatoria del C\'odigo Org\'anico Integral Penal en Materia Anticorrupci\'on},
+Registro Oficial, Segundo Suplemento n.\textsuperscript{o} 392, 17 de febrero de 2021.
+Texto de la reforma [En l\'inea]. Disponible: \url{https://www.pge.gob.ec/images/documentos/LeyTransparencia/2021/septiembre/a2/ley_organica_reformatoria_del_codigo_organico_integral_penal_en_materia_anticorrupcion.pdf}.
+Consultado: 6 de noviembre de 2026.
+
+\end{thebibliography}
+
+\clearpage
+\section*{Repositorio del proyecto LaTeX}
+
+Repositorio destinado al proyecto editable en LaTeX y al archivo ZIP del informe:
+
+\begingroup
+\fontsize{10}{12}\selectfont
+\mbox{\url{https://github.com/Harold-Vinueza/DEONTOLOG-A-INFORM-TICA-8VO-NIVEL-PARALELO-A-UTEQ-}}
+\par\endgroup
+
+\end{document}
