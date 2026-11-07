@@ -10,7 +10,9 @@ on:
       - '**/*.png'
       - '**/*.jpg'
       - '**/*.jpeg'
-      - '**/*.pdf'
+      - '**/*.bib'
+      - '**/*.sty'
+      - '**/*.cls'
       - '**/*.yml'
       - '.github/workflows/**'
   workflow_dispatch:
@@ -25,19 +27,30 @@ jobs:
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Preparar LaTeX
-        uses: xu-cheng/latex-action@v3
+      - name: Compilar todos los documentos LaTeX
+        uses: xu-cheng/latex-action@v4
         with:
           root_file: '**/main.tex'
           compiler: latexmk
-          args: -pdf -file-line-error -interaction=nonstopmode
+          work_in_root_file_dir: true
+          args: -pdf -file-line-error -halt-on-error -interaction=nonstopmode
           continue_on_error: false
 
-      - name: Guardar los PDF generados
+      - name: Comprobar PDF generados
+        shell: bash
+        run: |
+          echo "Documentos PDF encontrados:"
+          find . -type f -name '*.pdf' -not -path './.git/*' -print
+
+          if ! find . -type f -name '*.pdf' -not -path './.git/*' -print -quit | grep -q .; then
+            echo "::error::No se encontraron archivos PDF generados."
+            exit 1
+          fi
+
+      - name: Guardar los PDF generados en GitHub
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "Actualizar PDF compilados [skip ci]"
+          commit_message: "Actualizar PDF compilados"
           file_pattern: '**/*.pdf'
+          disable_globbing: true
