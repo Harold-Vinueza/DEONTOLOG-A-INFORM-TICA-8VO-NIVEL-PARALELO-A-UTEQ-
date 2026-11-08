@@ -1,0 +1,284 @@
+% !TeX program = pdflatex
+% Plantilla institucional editable — UTEQ
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[a4paper,top=2.25cm,bottom=2.2cm,left=2.4cm,right=2.2cm,headheight=28pt]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{setspace}
+\setstretch{1.25}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+
+\definecolor{azul}{HTML}{122A46}
+\definecolor{azulmedio}{HTML}{254B71}
+\definecolor{turquesa}{HTML}{008D95}
+\definecolor{dorado}{HTML}{E2B45E}
+\definecolor{tint}{HTML}{F3F7FA}
+\definecolor{gris}{HTML}{566579}
+\definecolor{borde}{HTML}{D8E2EB}
+\definecolor{codigo}{HTML}{F7F9FC}
+\definecolor{verdeorcid}{HTML}{A6CE39}
+
+% =================== DATOS DE LA ACTIVIDAD ===================
+\newcommand{\universidad}{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}
+\newcommand{\facultad}{FACULTAD DE CIENCIAS DE LA COMPUTACIÓN Y DISEÑO DIGITAL}
+\newcommand{\carrera}{CARRERA DE SOFTWARE}
+\newcommand{\materia}{Deontología Informática}
+\newcommand{\tema}{Definición de la Identidad Empresarial y los Principios Éticos de una Empresa de Desarrollo de Software}
+
+% Formato e identificadores ORCID de los integrantes
+\newcommand{\orcidperfil}[1]{\href{https://orcid.org/#1}{\tikz[baseline=-0.15em]{\node[circle,fill=verdeorcid,inner sep=1.5pt,text=white,font=\sffamily\bfseries\scriptsize]{iD};}\enspace\textcolor{black}{#1}}}
+\newcommand{\autorconorcid}[2]{#1\par{\footnotesize\orcidperfil{#2}}\par}
+
+\newcommand{\orciduno}{0009-0006-5075-6158}
+\newcommand{\orciddos}{0009-0000-5249-0679}
+\newcommand{\orcidtres}{0009-0007-3366-6887}
+\newcommand{\orcidcuatro}{0009-0002-5481-4299}
+
+\newcommand{\estudiante}{\begin{minipage}[c]{\linewidth}\setstretch{1.0}\setlength{\parskip}{0pt}
+\autorconorcid{Farinango Guandinango Freddy Vladimir}{\orciduno}\vspace{3pt}
+\autorconorcid{Urbina Romero Isaias Abraham}{\orciddos}\vspace{3pt}
+\autorconorcid{Villamarin Cuenca Ivan Andres}{\orcidtres}\vspace{3pt}
+\autorconorcid{Vinueza Sanchez Harold Nicolas}{\orcidcuatro}
+\end{minipage}}
+
+\newcommand{\autorespdf}{Farinango Guandinango Freddy Vladimir; Urbina Romero Isaias Abraham; Villamarin Cuenca Ivan Andres; Vinueza Sanchez Harold Nicolas}
+\newcommand{\docente}{Ing. Cordero Bazurto Jose Steven}
+\newcommand{\curso}{Octavo semestre — Paralelo A}
+\newcommand{\fechaentrega}{Domingo 08 de Noviembre del 2026, 00:00}
+\newcommand{\lugar}{Quevedo -- Los Ríos -- Ecuador}
+\newcommand{\anio}{2026}
+\newcommand{\repositorio}{\url{https://github.com/Harold-Vinueza/DEONTOLOG-A-INFORM-TICA-8VO-NIVEL-PARALELO-A-UTEQ-}}
+
+% Logo institucional
+\newcommand{\logoinstitucional}{%
+  \IfFileExists{logos/logo-uteq.png}{\includegraphics[height=3.1cm,keepaspectratio]{logos/logo-uteq.png}}{%
+    \begin{tikzpicture}\draw[turquesa,line width=1.5pt] (0,0) circle (1.12);
+    \node[font=\bfseries\Large,text=azul] at (0,0) {UTEQ};\end{tikzpicture}}}
+
+% Numeraciones de secciones
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+\hypersetup{unicode=true,colorlinks=true,linkcolor=black,urlcolor=azulmedio,citecolor=azulmedio,pdftitle={\tema},pdfauthor={\autorespdf}}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}}
+\titleformat{\section}{\Large\bfseries\color{black}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries\color{black}}{\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{black}}{\thesubsubsection}{0.7em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+\titlecontents{section}[0em]{\vspace{4pt}\bfseries\color{black}}{\contentslabel{2.2em}}{}{\titlerule*[0.6pc]{.}\contentspage}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\textbf{UTEQ}\enspace|\enspace Carrera de Software}
+\fancyhead[R]{\small Deontología Informática}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{borde}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\newtcolorbox{destacado}[1][]{enhanced,breakable,colback=tint,colframe=borde,boxrule=.6pt,arc=2mm,
+  borderline west={3pt}{0pt}{turquesa},left=12pt,right=10pt,top=8pt,bottom=8pt,#1}
+
+\begin{document}
+
+% ========================= PORTADA =========================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[azul] (current page.north west) rectangle ([yshift=-1.05cm]current page.north east);
+  \fill[turquesa] ([yshift=-1.05cm]current page.north west) rectangle ([yshift=-1.12cm]current page.north east);
+  \fill[azul] ([yshift=1.05cm]current page.south west) rectangle (current page.south east);
+  \fill[dorado] ([xshift=1.8cm,yshift=1.05cm]current page.south west) rectangle
+  ([xshift=5.7cm,yshift=1.12cm]current page.south west);
+\end{tikzpicture}
+\vspace*{-0.4cm}
+\begin{center}
+\logoinstitucional\\[0.35cm]
+{\normalsize\bfseries\color{black}\universidad}\\[0.12cm]
+{\small\color{black}\facultad}\\[0.10cm]
+{\small\bfseries\color{black}\carrera}
+\end{center}
+\vspace{0.6cm}
+\begin{center}
+{\small\bfseries\color{black}\MakeUppercase{PROYECTO INTEGRADOR -- FASE 1}}\\[0.35cm]
+{\fontsize{16}{20}\selectfont\bfseries\color{black}\tema}\\[0.5cm]
+{\color{dorado}\rule{3.7cm}{2pt}}\\[0.35cm]
+{\large\color{black}\materia}
+\end{center}
+\vfill
+\begin{tcolorbox}[colback=tint,colframe=borde,arc=2mm,boxrule=.7pt,left=15pt,right=15pt,top=12pt,bottom=12pt]
+\renewcommand{\arraystretch}{1.65}
+\begin{tabular}{@{}>{\bfseries\raggedright\arraybackslash}m{3.1cm}>{\raggedright\arraybackslash}m{10.7cm}@{}}
+Estudiantes: & \estudiante\\
+Docente: & \docente\\
+Curso: & \curso\\
+Entrega: & \fechaentrega\\
+Repositorio: & {\footnotesize\repositorio}
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.4cm}
+\begin{center}{\bfseries\color{black}\lugar\quad |\quad\anio}\end{center}
+\vspace{0.2cm}
+\end{titlepage}
+
+% ========================= ÍNDICE =========================
+\pagenumbering{roman}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% ========================= CUERPO DEL INFORME =========================
+\section{Presentación y Caracterización de la Empresa Ficticia}
+
+\subsection{Identificación y Portafolio de Servicios}
+Como equipo de trabajo hemos definido la creación de \textbf{TechNova Solutions S.A.}, una empresa de base tecnológica concebida para desarrollar software funcional y prestar servicios informáticos a nivel local y regional. Nuestra actividad comercial se centra en brindar acompañamiento a pequeños y medianos emprendimientos, negocios comerciales e instituciones educativas que buscan automatizar sus procesos administrativos mediante soluciones digitales prácticas.
+
+El portafolio de productos y servicios que ofrece la empresa abarca:
+\begin{itemize}[leftmargin=1.8em,itemsep=2pt]
+    \item \textbf{Sistemas web y aplicaciones móviles a medida:} Construcción de herramientas orientadas a facilitar la gestión comercial, la facturación y el contacto continuo entre los clientes y sus usuarios.
+    \item \textbf{Sistemas de ventas y control de inventarios:} Desarrollo de módulos específicos para el control de existencias en bodegas, seguimiento de pedidos, arqueos de caja y generación de reportes tributarios.
+    \item \textbf{Gestión y seguridad de bases de datos:} Modelado, optimización de consultas, creación de rutinas de respaldo automatizado y control riguroso de accesos para prevenir la pérdida o el secuestro de información.
+    \item \textbf{Mantenimiento y soporte técnico preventivo:} Auditorías periódicas de código, corrección de defectos lógicos, soporte al usuario y actualizaciones necesarias para que los sistemas sigan operando sin interrupciones~\cite{sommerville2011}.
+\end{itemize}
+
+El público al que nos dirigimos está formado principalmente por micro, pequeñas y medianas empresas (MIPYMES) y centros formativos de la región. Muchas veces estas organizaciones no cuentan con presupuestos para adquirir grandes licencias corporativas ni disponen de un departamento técnico propio, por lo que requieren herramientas directas, intuitivas y respaldadas por un equipo de soporte confiable.
+
+\subsection{Contexto Operativo y Responsabilidades Asumidas}
+TechNova Solutions S.A. operará en un mercado donde la digitalización avanza rápido, pero donde también surgen riesgos serios relacionados con la fuga de información privada, el mal uso de contraseñas y las fallas de seguridad en el software. En nuestra formación académica entendemos que desarrollar un sistema no consiste únicamente en redactar código que funcione, sino en asumir un compromiso ético frente a la sociedad~\cite{gotterbarn2001,sommerville2011}. En función de este contexto, la empresa delimita sus responsabilidades en tres ejes:
+
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Frente a los clientes:} Asumimos el deber de entregar programas que hayan pasado por pruebas rigurosas, acompañados de manuales claros y sin vulnerabilidades que comprometan su patrimonio. Asimismo, nos comprometemos a brindar cotizaciones transparentes, evitando cobrar por requerimientos innecesarios o generar una dependencia técnica deliberada~\cite{gotterbarn2001}.
+    \item \textbf{Frente a los colaboradores:} Promovemos un ambiente de trabajo justo, en el que se respete el descanso de los programadores, se reconozca el esfuerzo y la autoría de cada integrante y no se obligue a nadie a lanzar productos defectuosos para calmar presiones comerciales inmediatas~\cite{acm2018}.
+    \item \textbf{Frente a los usuarios finales:} Protegemos la privacidad de las personas que interactúan diariamente con las plataformas. Nos comprometemos a no registrar ni comercializar hábitos de consumo o datos personales, y a diseñar pantallas accesibles que no engañen al usuario con interfaces confusas~\cite{ieee2020}.
+\end{itemize}
+
+\subsection{Repositorio del Proyecto}
+Para asegurar la transparencia académica y el seguimiento continuo de esta primera fase del proyecto integrador, la estructura del proyecto y los archivos fuente de la documentación se encuentran centralizados en el repositorio público institucional:
+\begin{center}
+\url{https://github.com/Harold-Vinueza/DEONTOLOG-A-INFORM-TICA-8VO-NIVEL-PARALELO-A-UTEQ-}
+\end{center}
+
+---
+
+\section{Misión y Visión Organizacional}
+
+\subsection{Misión}
+Desarrollar soluciones informáticas accesibles, estables y seguras que ayuden a modernizar la administración de pequeños negocios e instituciones educativas, combinando buenas prácticas de programación, honradez en el trato con el cliente y un estricto respeto por la confidencialidad de la información que se nos confía~\cite{gotterbarn2001,sommerville2011}.
+
+\subsection{Visión}
+Llegar a ser para el año 2030 una empresa de software referente en la región, reconocida entre nuestros clientes por la solidez de los sistemas implementados, el trato cercano de nuestros colaboradores y una reputación intachable construida sobre el trabajo responsable y la ética profesional~\cite{acm2018}.
+
+---
+
+\section{Valores y Principios Éticos}
+
+Para orientar adecuadamente la empresa, consideramos fundamental diferenciar los conceptos: los \textbf{valores organizacionales} representan las convicciones y actitudes internas que guían la convivencia del equipo de trabajo en el día a día; en cambio, los \textbf{principios éticos} son los deberes profesionales y deontológicos que determinan cómo debemos actuar frente a los usuarios, la ley y el gremio~\cite{acm2018,gotterbarn2001}.
+
+\subsection{Valores Organizacionales}
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Responsabilidad compartida:} Para nosotros significa asumir como equipo el resultado de lo que producimos. Si durante una revisión de último momento notamos una discrepancia en los cálculos de cierre de caja, el programador encargado no busca culpables ni oculta el problema; lo pone sobre la mesa de inmediato para que juntos apliquemos el parche antes del despliegue.
+
+    \item \textbf{Transparencia en el trabajo:} Consiste en hablar con la verdad sobre el estado real de los proyectos, evitando exagerar avances técnicos. Por ejemplo, en las reuniones quincenales mostramos módulos funcionando de verdad y, si un desarrollo se retrasó por una complicación con una API, se lo explicamos al cliente de forma sencilla y directa en lugar de inventar justificaciones.
+
+    \item \textbf{Colaboración técnica continua:} Significa que dentro de la empresa el conocimiento no se guarda como secreto individual. En nuestras jornadas habituales, los integrantes con mayor experiencia en base de datos o lógica de negocio se sientan con sus compañeros a revisar código de manera formativa, explicando alternativas para que todo el equipo crezca parejo.
+
+    \item \textbf{Compromiso con el rigor y la calidad:} Es la disciplina de no tomar atajos técnicos que a la larga dañen el software~\cite{sommerville2011}. En la práctica se traduce en documentar las funciones principales y ejecutar las pruebas básicas de funcionamiento antes de dar una tarea por terminada, evitando acumular deudas técnicas que después compliquen el mantenimiento.
+
+    \item \textbf{Respeto entre compañeros y clientes:} Es la base de nuestro ambiente diario. Implica valorar el tiempo de los demás y escuchar las observaciones con apertura. Cuando surge un error inesperado en un servidor, nos concentramos en reparar la falla y mejorar el procedimiento, sin recurrir a reclamos personales ni descalificar el trabajo de ningún compañero.
+\end{enumerate}
+
+\subsection{Principios Éticos Profesionales}
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Prioridad de la seguridad y el bienestar del usuario:} Como principio deontológico, la tranquilidad y seguridad de quienes usan el software está siempre por encima de cualquier ganancia de la empresa~\cite{acm2018,ieee2020}. Si descubrimos que una librería gratuita para procesar pagos tiene una alerta de seguridad grave, descartamos su uso de inmediato y programamos una alternativa limpia, aunque tengamos que invertir horas extra sin facturarlas al cliente.
+
+    \item \textbf{Confidencialidad y protección estricta de la información:} Tenemos el deber moral de cuidar la información reservada que conocemos por nuestro trabajo~\cite{gotterbarn2001}. Cuando realizamos pruebas de rendimiento en un sistema de notas o de facturación, utilizamos exclusivamente datos ficticios o pruebas simuladas (\textit{mock data}); queda prohibido llevarse bases de datos reales a computadoras personales o usarlas sin permiso.
+
+    \item \textbf{Honestidad con la propiedad intelectual y licencias:} Consiste en valorar el trabajo de otros desarrolladores y respetar los derechos de autor~\cite{acm2018,gotterbarn2001}. Cada vez que incorporamos módulos o componentes de código abierto en un software comercial, revisamos que su tipo de licencia (como MIT, Apache o GPL) lo permita legalmente y acreditamos la autoría, descartando el uso de código pirateado o herramientas no autorizadas.
+
+    \item \textbf{Veracidad en las capacidades técnicas:} Implica ser honestos con lo que dominamos y con lo que el software realmente puede hacer~\cite{ieee2020,sommerville2011}. Si un cliente nos pide añadir un módulo automatizado que requiere servidores costosos o tecnologías que todavía no manejamos con solidez, no le cobramos fingiendo que lo haremos perfecto; le explicamos los alcances reales y proponemos una alternativa práctica y probada.
+
+    \item \textbf{Obligación de notificar fallos con oportunidad:} Como profesionales de la informática, no podemos callar cuando detectamos un defecto que pone en riesgo las operaciones del usuario~\cite{gotterbarn2001}. Si tras publicar una actualización descubrimos que una consulta genera lentitud en los reportes contables, notificamos al cliente de inmediato y aplicamos la corrección, asumiendo nuestra responsabilidad técnica sin pretextos.
+\end{enumerate}
+
+---
+
+\section{Análisis de Situaciones Profesionales Propuestas}
+
+\subsection{Situación 1: Presión por entregar un producto con fallas de seguridad conocidas}
+
+\textbf{Descripción del caso:}\\
+A dos días de entregar un sistema de punto de venta y facturación para una distribuidora comercial, el encargado de pruebas y seguridad identifica que una de las consultas en la pantalla de cobro es vulnerable a inyección SQL. Esta vulnerabilidad permitiría que una persona con conocimientos básicos extraiga los datos de clientes y transacciones. Al comunicar el problema, la administración del cliente solicita que se haga la entrega en la fecha acordada sin aplicar cambios, argumentando que ya tienen eventos de inauguración programados y que la falla se puede solucionar después con una actualización sin que nadie se entere.
+
+\textbf{Valores y principios aplicados:}
+En este caso intervienen directamente el valor de la \textit{Responsabilidad compartida} y el \textit{Compromiso con la calidad}, junto a los principios éticos de \textit{Prioridad de la seguridad}~\cite{acm2018,ieee2020}, \textit{Confidencialidad de la información}~\cite{gotterbarn2001} y \textit{Veracidad técnica}~\cite{sommerville2011}.
+
+\textbf{Actuación profesional justificada:}\\
+Como futuros ingenieros de software consideramos que la decisión correcta es no autorizar la publicación del sistema en esas condiciones. Ceder a la prisa y liberar un software sabiendo que contiene una puerta de entrada para robos de información contradice el principio de priorizar la seguridad de las personas~\cite{acm2018,ieee2020}.
+
+Frente a esto, el equipo debe actuar con transparencia y serenidad: concertar una reunión formal con el cliente para explicarle en un lenguaje claro que una filtración de datos le acarrearía problemas legales y pérdidas económicas mucho más graves que un retraso de pocos días. La empresa debe asumir una solución responsable, acordando un plazo prudencial de dos o tres días adicionales para implementar sentencias preparadas y consultas parametrizadas~\cite{sommerville2011}. Finalmente, el equipo de pruebas debe revalidar el módulo y comprobar que la vulnerabilidad quedó completamente cerrada antes del paso definitivo a producción.
+
+\subsection{Situación 2: Solicitud de reutilización indebida de código bajo contrato de reserva}
+
+\textbf{Descripción del caso:}\\
+Un centro educativo particular contrata a nuestra empresa para crear una plataforma de seguimiento de notas y pensiones. Para abaratar el presupuesto y entregar la obra en la mitad del tiempo, uno de los desarrolladores del equipo sugiere reutilizar la estructura de base de datos, los procedimientos de cobro y módulos enteros que se programaron el año pasado para otra institución privada bajo un estricto acuerdo de exclusividad y confidencialidad. Su argumento es que el cliente anterior nunca lo va a notar y que así la empresa gana más con menos trabajo.
+
+\textbf{Valores y principios aplicados:}
+Esta situación pone a prueba los valores de \textit{Transparencia} y \textit{Respeto}, y se fundamenta en los principios de \textit{Confidencialidad y custodia de la información}~\cite{gotterbarn2001}, \textit{Probidad en el uso de la propiedad intelectual}~\cite{acm2018} y \textit{Veracidad en la competencia técnica}~\cite{ieee2020,sommerville2011}.
+
+\textbf{Actuación profesional justificada:}\\
+El equipo de trabajo debe rechazar de manera contundente la propuesta del compañero. Reutilizar código privado y esquemas diseñados bajo reserva no es una simple ``optimización'', sino una apropiación indebida de propiedad ajena y una violación directa al contrato de confidencialidad~\cite{acm2018,gotterbarn2001}.
+
+La forma ética de proceder consiste en aclararle al colaborador la diferencia entre experiencia y propiedad: los patrones de diseño y las metodologías que aprendimos en el proyecto anterior forman parte de nuestra formación técnica y se pueden aplicar con toda libertad~\cite{sommerville2011}; pero el código concreto, las tablas y las reglas de negocio pertenecen al cliente que pagó por ellas. Por lo tanto, el sistema del nuevo cliente debe diseñarse desde cero en función de sus propias necesidades, cotizando tiempos reales y garantizando una entrega limpia, legítima y sin riesgo de demandas por plagio comercial.
+
+---
+
+\section{Conclusiones}
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item La definición de la identidad de TechNova Solutions S.A. nos permitió comprobar que el desarrollo de software adquiere valor cuando se acompaña de un sentido social claro, donde las responsabilidades con clientes, empleados y usuarios forman la base de la actividad empresarial~\cite{sommerville2011}.
+    \item Establecer con claridad la diferencia entre los valores de la convivencia interna y los principios éticos de la profesión nos brinda una guía práctica para tomar decisiones cotidianas, recordando que la técnica informática siempre debe responder al bien común y a la honestidad~\cite{acm2018,gotterbarn2001}.
+    \item El análisis de los dos casos prácticos nos ayudó a entender que las situaciones éticas más difíciles no nacen de malas intenciones evidentes, sino de presiones cotidianas por ahorrar tiempo o dinero. En esos momentos, contar con criterios deontológicos firmes es lo que protege la reputación del profesional y la confianza de las personas en la tecnología~\cite{ieee2020}.
+\end{enumerate}
+
+\clearpage
+\renewcommand{\refname}{Referencias Bibliográficas}
+\addcontentsline{toc}{section}{Referencias Bibliográficas}
+\begin{thebibliography}{99}
+
+\bibitem{acm2018}
+Association for Computing Machinery, \textit{ACM Code of Ethics and Professional Conduct}. Nueva York, NY, EE. UU.: ACM, 2018. [En línea]. Disponible en: \url{https://www.acm.org/ethics}
+
+\bibitem{ieee2020}
+Institute of Electrical and Electronics Engineers, \textit{IEEE Code of Ethics}. Piscataway, NJ, EE. UU.: IEEE, 2020. [En línea]. Disponible en: \url{https://www.ieee.org/about/corporate/governance/p7-8.html}
+
+\bibitem{gotterbarn2001}
+D. Gotterbarn, K. Miller y S. Rogerson, «Software engineering code of ethics is approved», \textit{Communications of the ACM}, vol. 42, n.º 10, pp. 102--107, 1999, doi: \href{https://doi.org/10.1145/317665.317682}{10.1145/317665.317682}.
+
+\bibitem{sommerville2011}
+I. Sommerville, \textit{Ingeniería del Software}, 9.ª ed. Madrid, España: Pearson Educación, 2011, pp. 14--18.
+
+\end{thebibliography}
+
+\end{document}
