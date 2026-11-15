@@ -1,0 +1,436 @@
+% !TeX program = pdflatex
+% Plantilla institucional editable — UTEQ
+% Compatible con Overleaf usando pdfLaTeX.
+\documentclass[12pt,a4paper,oneside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage[a4paper,top=2.25cm,bottom=2.2cm,left=2.4cm,right=2.2cm,headheight=28pt]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs,tabularx,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc,positioning}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{setspace}
+\setstretch{1.25}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{7pt}
+
+\definecolor{azul}{HTML}{122A46}
+\definecolor{azulmedio}{HTML}{254B71}
+\definecolor{turquesa}{HTML}{008D95}
+\definecolor{dorado}{HTML}{E2B45E}
+\definecolor{tint}{HTML}{F3F7FA}
+\definecolor{gris}{HTML}{566579}
+\definecolor{borde}{HTML}{D8E2EB}
+\definecolor{codigo}{HTML}{F7F9FC}
+\definecolor{verdeorcid}{HTML}{A6CE39}
+
+% =================== DATOS DE LA ACTIVIDAD ===================
+\newcommand{\universidad}{UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO}
+\newcommand{\facultad}{FACULTAD DE CIENCIAS DE LA COMPUTACIÓN Y DISEÑO DIGITAL}
+\newcommand{\carrera}{CARRERA DE SOFTWARE}
+\newcommand{\materia}{Deontología Informática}
+\newcommand{\tema}{Análisis y Aplicación de Códigos de Ética en la Ingeniería de Software}
+
+% Formato e identificadores ORCID de los integrantes del equipo (Modalidad Grupal)
+\newcommand{\orcidperfil}[1]{\href{https://orcid.org/#1}{\tikz[baseline=-0.15em]{\node[circle,fill=verdeorcid,inner sep=1.5pt,text=white,font=\sffamily\bfseries\scriptsize]{iD};}\enspace\textcolor{black}{#1}}}
+\newcommand{\autorconorcid}[2]{#1\par{\footnotesize\orcidperfil{#2}}\par}
+
+\newcommand{\orciduno}{0009-0006-5075-6158}
+\newcommand{\orciddos}{0009-0000-5249-0679}
+\newcommand{\orcidtres}{0009-0007-3366-6887}
+\newcommand{\orcidcuatro}{0009-0002-5481-4299}
+
+\newcommand{\estudiante}{\begin{minipage}[c]{\linewidth}\setstretch{1.0}\setlength{\parskip}{0pt}
+\autorconorcid{Farinango Guandinango Freddy Vladimir}{\orciduno}\vspace{3pt}
+\autorconorcid{Urbina Romero Isaias Abraham}{\orciddos}\vspace{3pt}
+\autorconorcid{Villamarin Cuenca Ivan Andres}{\orcidtres}\vspace{3pt}
+\autorconorcid{Vinueza Sanchez Harold Nicolas}{\orcidcuatro}
+\end{minipage}}
+
+\newcommand{\autorespdf}{Farinango Guandinango Freddy Vladimir; Urbina Romero Isaias Abraham; Villamarin Cuenca Ivan Andres; Vinueza Sanchez Harold Nicolas}
+\newcommand{\docente}{Ing. Cordero Bazurto Jose Steven}
+\newcommand{\curso}{Octavo semestre — Paralelo A}
+\newcommand{\fechaentrega}{Sábado 14 de Noviembre del 2026}
+\newcommand{\lugar}{Quevedo -- Los Ríos -- Ecuador}
+\newcommand{\anio}{2026}
+\newcommand{\repositorio}{\url{https://github.com/Harold-Vinueza/DEONTOLOG-A-INFORM-TICA-8VO-NIVEL-PARALELO-A-UTEQ-}}
+
+% Logo institucional
+\newcommand{\logoinstitucional}{%
+  \IfFileExists{logos/logo-uteq.png}{\includegraphics[height=3.1cm,keepaspectratio]{logos/logo-uteq.png}}{%
+    \begin{tikzpicture}\draw[turquesa,line width=1.5pt] (0,0) circle (1.12);
+    \node[font=\bfseries\Large,text=azul] at (0,0) {UTEQ};\end{tikzpicture}}}
+
+% Numeraciones de secciones
+\renewcommand{\thesection}{\arabic{section}.}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}.}
+
+\hypersetup{unicode=true,colorlinks=true,linkcolor=black,urlcolor=azulmedio,citecolor=azulmedio,pdftitle={\tema},pdfauthor={\autorespdf}}
+
+\addto\captionsspanish{\renewcommand{\contentsname}{Contenido}\renewcommand{\listtablename}{Índice de tablas}}
+\titleformat{\section}{\Large\bfseries\color{black}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries\color{black}}{\thesubsection}{0.75em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{black}}{\thesubsubsection}{0.7em}{}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+\titlecontents{section}[0em]{\vspace{4pt}\bfseries\color{black}}{\contentslabel{2.2em}}{}{\titlerule*[0.6pc]{.}\contentspage}
+
+\captionsetup{font=small,labelfont={bf,color=black},labelsep=period}
+
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\textbf{UTEQ}\enspace|\enspace Carrera de Software}
+\fancyhead[R]{\small Deontología Informática}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{borde}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\footrulewidth}{0pt}
+
+\newtcolorbox{destacado}[1][]{enhanced,breakable,colback=tint,colframe=borde,boxrule=.6pt,arc=2mm,
+  borderline west={3pt}{0pt}{turquesa},left=12pt,right=10pt,top=8pt,bottom=8pt,#1}
+
+\newtcolorbox{resultado}[1][]{enhanced,breakable,colback=white,colframe=turquesa!55,boxrule=.75pt,arc=2mm,
+  title={\bfseries Resultados (Resumen de la etapa P)},coltitle=black,colbacktitle=tint,#1}
+
+\begin{document}
+
+% ========================= 1. PORTADA =========================
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[azul] (current page.north west) rectangle ([yshift=-1.05cm]current page.north east);
+  \fill[turquesa] ([yshift=-1.05cm]current page.north west) rectangle ([yshift=-1.12cm]current page.north east);
+  \fill[azul] ([yshift=1.05cm]current page.south west) rectangle (current page.south east);
+  \fill[dorado] ([xshift=1.8cm,yshift=1.05cm]current page.south west) rectangle
+  ([xshift=5.7cm,yshift=1.12cm]current page.south west);
+\end{tikzpicture}
+\vspace*{-0.4cm}
+\begin{center}
+\logoinstitucional\\[0.35cm]
+{\normalsize\bfseries\color{black}\universidad}\\[0.12cm]
+{\small\color{black}\facultad}\\[0.10cm]
+{\small\bfseries\color{black}\carrera}
+\end{center}
+\vspace{0.55cm}
+\begin{center}
+{\small\bfseries\color{black}\MakeUppercase{TALLER ACADÉMICO -- GRUPAL}}\\[0.35cm]
+{\fontsize{17}{21}\selectfont\bfseries\color{black}\tema}\\[0.5cm]
+{\color{dorado}\rule{3.7cm}{2pt}}\\[0.35cm]
+{\large\color{black}\materia}
+\end{center}
+\vfill
+\begin{tcolorbox}[colback=tint,colframe=borde,arc=2mm,boxrule=.7pt,left=15pt,right=15pt,top=12pt,bottom=12pt]
+\renewcommand{\arraystretch}{1.65}
+\begin{tabular}{@{}>{\bfseries\raggedright\arraybackslash}m{3.1cm}>{\raggedright\arraybackslash}m{10.7cm}@{}}
+Estudiantes: & \estudiante\\
+Docente: & \docente\\
+Curso: & \curso\\
+Entrega: & \fechaentrega\\
+Repositorio: & {\footnotesize\repositorio}
+\end{tabular}
+\end{tcolorbox}
+\vspace{0.4cm}
+\begin{center}{\bfseries\color{black}\lugar\quad |\quad\anio}\end{center}
+\vspace{0.2cm}
+\end{titlepage}
+
+% ========================= ÍNDICE =========================
+\pagenumbering{roman}
+\setcounter{page}{1}
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+
+% ========================= SECCIÓN 1 =========================
+\section{Revisión y Matriz Comparativa de los Códigos de Ética Profesionales}
+
+\subsection{Revisión del Propósito y Estructura de los Códigos}
+En la Ingeniería de Software, las decisiones técnicas que tomamos como equipo a diario influyen de manera directa en la privacidad, la seguridad y los derechos de las personas. Los códigos de ética profesionales no funcionan como un algoritmo mecánico que entrega respuestas automáticas, sino como una referencia compartida por la profesión para orientar nuestro criterio cuando las exigencias del negocio entran en tensión con el bienestar de los usuarios (ACM, 2018; IEEE-CS/ACM, 1999).
+
+Al revisar los dos documentos oficiales de la actividad, identificamos sus características principales:
+\begin{itemize}[leftmargin=1.8em,itemsep=3pt]
+    \item \textbf{Código de Ética y Conducta Profesional de ACM (2018):} Tiene como propósito inspirar y guiar la conducta ética de cualquier profesional o estudiante de informática bajo un principio rector: \textit{el bien público es siempre la primera prioridad} (ACM, 2018). Su estructura se divide en \textbf{4 secciones y 25 principios}: Sección 1 de principios éticos generales (1.1 al 1.7); Sección 2 de responsabilidades profesionales sobre calidad, competencia y seguridad (2.1 al 2.9); Sección 3 de liderazgo profesional (3.1 al 3.7); y Sección 4 sobre el cumplimiento del código (4.1 y 4.2).
+    \item \textbf{Código de Ética y Práctica Profesional de Ingeniería de Software de IEEE-CS/ACM (1999):} Elaborado conjuntamente por IEEE Computer Society y ACM en su versión 5.2, busca que el análisis, diseño, desarrollo, pruebas y mantenimiento de software se consoliden como una profesión íntegra y benéfica para la sociedad (IEEE-CS/ACM, 1999). Se organiza en una \textbf{versión corta de 8 principios} (\textit{1. Sociedad, 2. Cliente y empresario, 3. Producto, 4. Juicio, 5. Administración, 6. Profesión, 7. Colegas y 8. Personal}) y una \textbf{versión completa} que detalla cláusulas numeradas (como 1.03, 2.05 o 3.12) aplicables al trabajo diario en proyectos de software.
+\end{itemize}
+
+\subsection{Matriz Comparativa de los Códigos de Ética}
+En el Cuadro~\ref{tab:matriz} se presenta el análisis comparativo de los aspectos éticos solicitados, explicando el significado de cada disposición con su respectiva numeración, sus semejanzas y diferencias, y un ejemplo práctico dentro de la Ingeniería de Software.
+
+\begingroup
+\small
+\setlength{\LTleft}{0pt}
+\setlength{\LTright}{0pt}
+\renewcommand{\arraystretch}{1.35}
+\begin{longtable}{@{}>{\bfseries\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{2.9cm} >{\raggedright\arraybackslash}p{2.9cm} >{\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}p{3.3cm}@{}}
+\caption{Matriz comparativa entre el Código de ACM (2018) y el Código IEEE-CS/ACM (1999)}\label{tab:matriz}\\
+\toprule
+\textbf{Aspecto ético} & \textbf{Código ACM (2018)} & \textbf{Código IEEE-CS/ACM (1999)} & \textbf{Semejanzas y diferencias} & \textbf{Ejemplo de aplicación} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{{\tablename\ \thetable{} -- Continuación de la página anterior}} \\
+\toprule
+\textbf{Aspecto ético} & \textbf{Código ACM (2018)} & \textbf{Código IEEE-CS/ACM (1999)} & \textbf{Semejanzas y diferencias} & \textbf{Ejemplo de aplicación} \\
+\midrule
+\endhead
+\midrule \multicolumn{5}{r}{{Continúa en la siguiente página...}} \\ \bottomrule
+\endfoot
+\bottomrule
+\endlastfoot
+
+Responsabilidad social & 
+\textbf{Sección 1 (1.1 y 1.2) y Sección 3 (3.1):} Compromete al profesional a usar sus habilidades en beneficio de la sociedad, priorizar a los menos favorecidos y evitar daños injustificados a la salud, seguridad o reputación (ACM, 2018). & 
+\textbf{Principio 1 (Sociedad, cláusulas 1.02, 1.03 y 1.04):} Exige moderar los intereses del empleador y cliente con el bienestar social, aprobando software solo si es seguro y reportando riesgos potenciales (IEEE-CS/ACM, 1999). & 
+\textit{Semejanza:} Ambos colocan el bienestar público como prioridad máxima sobre el interés comercial.\par
+\textit{Diferencia:} ACM incorpora el cuidado de sistemas que forman parte de la infraestructura social (3.7), mientras que IEEE-CS/ACM lo vincula directamente a la firma y aprobación formal del software (1.03). & 
+Al actualizar un portal público de trámites, el equipo adapta los formularios para lectores de pantalla y navegación por teclado a fin de no excluir a ciudadanos con discapacidad visual o motriz. \\
+\midrule
+
+Honestidad profesional & 
+\textbf{Sección 1 (Principio 1.3):} Ordena ser transparente sobre las capacidades, limitaciones y problemas de un sistema, prohibiendo fabricar datos, engañar o callar conflictos de interés (ACM, 2018). & 
+\textbf{Principio 1 (1.06), Principio 2 (2.06) y Principio 6 (6.07):} Manda ser veraz en toda afirmación sobre el software, reportar a tiempo proyectos problemáticos y evitar descripciones engañosas (IEEE-CS/ACM, 1999). & 
+\textit{Semejanza:} Ambos sancionan la alteración de informes o las falsas promesas técnicas.\par
+\textit{Diferencia:} IEEE-CS/ACM aterriza la honestidad en la ingeniería de proyectos mediante la cláusula 3.09, exigiendo estimaciones realistas de plazos y costos con su margen de incertidumbre. & 
+Si una integración bancaria se retrasa por fallas en las pruebas de carga, el desarrollador reporta el estado real al cliente con evidencia técnica y propone un nuevo rango de entrega en vez de simular que ya está listo. \\
+\midrule
+
+Calidad y seguridad del software & 
+\textbf{Sección 2 (Principios 2.1, 2.5 y 2.9):} Pide lograr alta calidad en procesos y productos, evaluar riesgos de forma integral y diseñar sistemas robustos con monitoreo, parches y aviso oportuno de brechas (ACM, 2018). & 
+\textbf{Principio 3 (Producto, cláusulas 3.01, 3.10 y 3.11):} Obliga a cumplir los estándares profesionales más altos posibles, realizando pruebas, depuración y documentación de problemas significativos (IEEE-CS/ACM, 1999). & 
+\textit{Semejanza:} Ambos rechazan disminuir las pruebas de calidad por presiones de calendario.\par
+\textit{Diferencia:} ACM (2018) contempla riesgos modernos como vulnerabilidades posdespliegue y sesgos en aprendizaje automático (2.5), mientras que IEEE-CS/ACM se enfoca en especificaciones y verificación del ciclo de vida. & 
+Dos días antes de lanzar un sistema médico, el encargado de QA detecta que al cambiar un parámetro en la URL se ven análisis de otros pacientes; el equipo detiene la salida hasta corregir el control de acceso. \\
+\midrule
+
+Confidencialidad y privacidad & 
+\textbf{Sección 1 (Principios 1.6 y 1.7):} Distingue entre privacidad (1.6: datos mínimos, consentimiento informado y fin legítimo) y confidencialidad (1.7: proteger secretos comerciales y datos de clientes salvo violación legal) (ACM, 2018). & 
+\textbf{Principio 2 (2.05) y Principio 3 (3.12 y 3.13):} Exige mantener en reserva la información confidencial cuando sea congruente con el interés social y la ley, y usar datos solo de maneras autorizadas (IEEE-CS/ACM, 1999). & 
+\textit{Semejanza:} Ambos establecen que el secreto profesional termina cuando se intenta encubrir un daño al público o una ilegalidad.\par
+\textit{Diferencia:} ACM detalla reglas técnicas de privacidad (retención, anonimización, evitar reidentificación), en tanto que IEEE-CS/ACM lo integra en el manejo ético de datos del producto. & 
+Para probar un módulo de comercio electrónico, los programadores usan datos simulados (\textit{mock data}) y se niegan a exportar la base de datos real con direcciones de clientes hacia herramientas externas sin permiso. \\
+\midrule
+
+Juicio e independencia frente a órdenes & 
+\textbf{Sección 2 (2.3) y Sección 3 (3.4 y 4.1):} Señala que las órdenes o reglas internas que causen daños reconocibles deben cuestionarse por los canales formales antes de actuar (ACM, 2018). & 
+\textbf{Principio 4 (4.02) y Principio 5 (5.11 y 5.12):} Indica endosar documentos solo cuando se está de acuerdo, prohíbe a los jefes pedir actos contrarios al código (5.11) y prohíbe castigar a quien plantee dudas éticas (5.12) (IEEE-CS/ACM, 1999). & 
+\textit{Semejanza:} Ambos dejan claro que \guillemotleft solo cumplía órdenes\guillemotright{} no exime de responsabilidad al ingeniero.\par
+\textit{Diferencia:} IEEE-CS/ACM ofrece una protección explícita contra represalias laborales (5.12) y regula directamente la firma de informes de calidad (4.02). & 
+Cuando un gerente financiero pide ocultar en una consulta SQL los descuadres de inventario antes de una reunión con socios, el desarrollador rechaza alterar los datos silenciosamente y propone incluir una nota aclaratoria visible. \\
+
+\end{longtable}
+\endgroup
+
+---
+
+% ========================= SECCIÓN 2 =========================
+\section{Selección y Análisis del Dilema Ético mediante el Método P-A-U-S-A}
+
+\subsection{Planteamiento del Caso Seleccionado (Caso 02)}
+Para desarrollar los apartados prácticos de la actividad seleccionamos como equipo el \textbf{Caso 02: «Datos de clientes utilizados sin autorización»} del documento oficial de casos de estudio.
+
+\begin{destacado}
+\textbf{Resumen del dilema ético (Caso 02):} Una compañía de comercio electrónico ha reunido durante años datos de compra, direcciones y hábitos de navegación de sus clientes. El equipo de marketing solicita al área de desarrollo exportar estos datos hacia una herramienta externa para crear perfiles de consumo y personalizar anuncios. En el aviso de privacidad aceptado por los usuarios solo se indica que los datos sirven para gestionar pedidos y mejorar la experiencia de compra, pero no se menciona la transferencia a esa herramienta externa. Como desarrolladora a cargo, observas que la exportación incluiría información identificable y que el proveedor externo guardará copias fuera del entorno habitual. El jefe de marketing insiste en que la dirección ya aprobó la campaña y que \guillemotleft otras tiendas hacen lo mismo\guillemotright, mientras el responsable técnico te recuerda la cláusula de confidencialidad de tu contrato laboral y pide no hablar del tema con terceros, aunque no se ha hecho ninguna evaluación formal de privacidad. ¿Qué haces?
+\end{destacado}
+
+\textbf{Conflicto ético principal:}\\
+El conflicto central enfrenta la presión comercial y jerárquica del empleador (ejecutar en silencio una exportación de datos ya aprobada por marketing amparándose en una cláusula de confidencialidad laboral) contra el deber profesional y legal de resguardar la privacidad de los usuarios finales, cuyos datos personales identificables pretenden ser copiados en servidores externos para fines publicitarios no consentidos.
+
+\subsection{Desarrollo Completo del Método P - A - U - S - A}
+Siguiendo exactamente la estructura metodológica trabajada en clases (Figura 4 de la guía de estudio), resolvemos el dilema paso a paso a través de sus cinco etapas (\textbf{P - A - U - S - A}):
+
+% ----------------- ETAPA P -----------------
+\subsubsection{Apartado de la P (Preguntas: Hechos, Qué sé, Qué me falta saber y Resultados)}
+\begin{itemize}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Hechos:} El área de marketing solicita exportar la base de datos de clientes (compras, direcciones y navegación) hacia una herramienta externa para crear perfiles de anuncios; el aviso de privacidad actual de la tienda no menciona ni autoriza esa transferencia a terceros; la empresa proveedora almacenará copias en servidores externos; y el líder técnico pide guardar silencio invocando la cláusula de confidencialidad laboral sin haber realizado una evaluación de privacidad.
+    \item \textbf{Qué sé:} Sé que tengo acceso técnico a la funcionalidad de exportación, que los registros solicitados contienen información personal identificable de los compradores y que enviar esos datos fuera del entorno de la tienda sin consentimiento vulnera tanto el aviso de privacidad como la normativa de protección de datos.
+    \item \textbf{Qué me falta saber:} Qué controles de seguridad tiene el servidor externo donde se copiarán los datos; si la alta dirección conoce realmente las sanciones legales a las que se expone la empresa; qué pasará laboralmente si detengo la exportación directa; y si al área de marketing le bastaría con recibir estadísticas generales anonimizadas en lugar de los datos personales de cada cliente.
+\end{itemize}
+
+\begin{resultado}
+Existe una solicitud directa para exportar datos personales identificables de los clientes hacia servidores de una plataforma externa de marketing sin autorización en el aviso de privacidad ni evaluación previa de riesgos, mientras las jefaturas presionan para ejecutar el envío de inmediato y guardar silencio bajo el argumento del contrato laboral.
+\end{resultado}
+
+% ----------------- ETAPA A -----------------
+\subsubsection{Apartado de la A (Actores: ¿Quién gana?, ¿Quién pierde? y ¿Quién ni siquiera sabe?)}
+Identificamos a todas las personas y organizaciones involucradas en el caso, determinando sus intereses, responsabilidades comprometidas y consecuencias:
+
+\begin{itemize}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Clientes de la tienda (usuarios):} \textit{Pierden} directamente el control y la privacidad de sus direcciones e historial de compras, quedando expuestos a perfilamiento comercial no consentido y a posibles filtraciones en servidores externos. \textbf{No saben lo que sucede} porque el aviso de privacidad nunca les informó de esta transferencia.
+    \item \textbf{Jefe de marketing:} \textit{Gana} a corto plazo porque lanza rápido su campaña de publicidad personalizada, pero \textit{pierde} a mediano plazo al comprometer legalmente a la empresa por usar datos sin base legítima.
+    \item \textbf{Responsable técnico:} \textit{Gana} evitar discusiones con marketing y dirección en el momento, pero \textit{pierde} autoridad ética y asume responsabilidad directa al permitir que salgan datos identificables sin una auditoría de privacidad y al usar mal la cláusula de confidencialidad para silenciar alertas internas.
+    \item \textbf{Desarrolladora (equipo de desarrollo):} Si obedece sin cuestionar, \textit{gana} tranquilidad momentánea con sus jefes, pero \textit{pierde} su integridad profesional, incumple los códigos de ética y queda comprometida como autora técnica de una transferencia no autorizada de datos.
+    \item \textbf{Empresa de comercio electrónico:} \textit{Gana} segmentación comercial rápida, pero \textit{pierde} su credibilidad ante el público, daña su reputación y se expone a multas severas por incumplir la Ley Orgánica de Protección de Datos Personales (LOPDP). \textbf{No sabe en su totalidad} el riesgo técnico porque no se ha hecho una evaluación formal de privacidad.
+\end{itemize}
+
+\begin{table}[H]\centering
+\caption{Resumen del mapa de actores (Etapa A del Método PAUSA)}\label{tab:actores}
+\small\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\raggedright\arraybackslash}p{2.9cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{3.0cm}@{}}
+\toprule
+\textbf{Actor} & \textbf{¿Quién gana?} & \textbf{¿Quién pierde?} & \textbf{¿Quién ni siquiera sabe?} \\
+\midrule
+Clientes & No obtienen beneficio legítimo. & Pierden privacidad y control sobre sus direcciones y compras. & \textbf{No saben} que sus datos saldrán a otra empresa. \\
+Jefe de marketing & Cumple rápido con la campaña de anuncios. & Arriesga sanciones legales y reputacionales. & Sabe del envío, pero ignora o minimiza el riesgo ético. \\
+Responsable técnico & Evita roces con el área comercial. & Compromete la seguridad de datos y su liderazgo ético. & Sabe del problema, pero pide callar. \\
+Desarrolladora & Evita fricciones inmediatas si obedece. & Pierde integridad profesional si exporta datos sin permiso. & Sí sabe y detectó el conflicto. \\
+Empresa (Tienda) & Obtiene perfiles de consumo rápidos. & Pierde credibilidad y enfrenta multas bajo la LOPDP. & La gerencia \textbf{desconoce} la falta de evaluación de privacidad. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ----------------- ETAPA U -----------------
+\subsubsection{Apartado de la U (Ubicar Principios: Códigos ACM, IEEE-CS/ACM y Normativa)}
+Siguiendo el esquema de clase, ubicamos las disposiciones específicas de los dos códigos profesionales revisados y las leyes ecuatorianas que se aplican directamente al conflicto:
+
+\begin{itemize}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{ACM 1.6 Privacidad (\textit{Sección 1 -- Respetar la privacidad}):} Los datos de compras, direcciones y hábitos de navegación son información personal de los clientes. Este principio exige usar los datos personales solo con fines legítimos, recolectar el mínimo necesario y contar con consentimiento informado, prohibiendo expresamente que la información recopilada para un propósito (gestionar pedidos) sea reutilizada para otros fines (enviarla a un tercero de marketing) sin autorización del titular (ACM, 2018).
+    \item \textbf{ACM 1.3 Honestidad (\textit{Sección 1 -- Ser honesto y confiable}):} La empresa no está siendo transparente con los usuarios acerca del tratamiento real de su información, pues el aviso de privacidad omite la transferencia externa. Además, el principio obliga al profesional a informar con franqueza sobre las limitaciones y problemas del sistema a los interesados (ACM, 2018).
+    \item \textbf{ACM 1.2 Evitar el daño (\textit{Sección 1 -- Evitar el daño}):} En el código de ACM, la divulgación injustificada de información se considera explícitamente una forma de daño (ACM, 2018). Copiar registros identificables en servidores fuera del entorno habitual sin una evaluación de seguridad previa expone a los clientes a filtraciones o usos indebidos que no podemos controlar.
+    \item \textbf{ACM 1.7 Confidencialidad (\textit{Sección 1}) e IEEE-CS/ACM 2.05 (\textit{Principio 2 -- Cliente y empresario}):} Ambas disposiciones mandan proteger la información confidencial (incluidos los datos de clientes), aclarando que dicha confidencialidad debe ser congruente con el interés social y con la ley (ACM, 2018; IEEE-CS/ACM, 1999). Esto demuestra que el responsable técnico interpreta mal el contrato: la confidencialidad obliga a la desarrolladora a no publicar los datos en internet, pero sobre todo obliga a la empresa a no entregar los datos privados de sus clientes a un proveedor externo no autorizado.
+    \item \textbf{IEEE-CS/ACM 3.12 y 3.13 (\textit{Principio 3 -- Producto}):} La cláusula \textbf{3.12} exige desarrollar software que respete la privacidad de los usuarios, y la cláusula \textbf{3.13} ordena \guillemotleft usar sólo datos precisos derivados por medios éticos y legales, y usarlos sólo de las maneras propiamente autorizadas\guillemotright{} (IEEE-CS/ACM, 1999). Ejecutar la exportación hacia la herramienta externa viola directamente el uso autorizado de la base de datos.
+    \item \textbf{IEEE-CS/ACM 2.06 (\textit{Principio 2}) y 5.11 (\textit{Principio 5 -- Administración}):} La cláusula \textbf{2.06} respalda a la desarrolladora para identificar, documentar y reportar al empleador que la operación es problemática y puede violar la ley; mientras que la cláusula \textbf{5.11} establece que ningún líder debe pedir a un ingeniero de software hacer algo incongruente con el código de ética (IEEE-CS/ACM, 1999).
+    \item \textbf{Marco legal aplicable en Ecuador (LOPDP y COIP -- ACM 2.3):} En concordancia con el principio \textbf{2.3 de ACM} (\textit{Conocer y respetar las reglas vigentes}), la \textbf{Ley Orgánica de Protección de Datos Personales (LOPDP)} de 2021 y su Reglamento (2023) exigen el consentimiento previo, libre, específico e informado del titular para transferir datos personales a terceros, obligando además a realizar evaluaciones de impacto cuando hay perfilamiento automatizado (Asamblea Nacional del Ecuador, 2021; Presidencia de la República del Ecuador, 2023). Por su parte, el artículo 229 del \textbf{COIP} tipifica como delito la revelación ilegal de bases de datos (Asamblea Nacional del Ecuador, 2014).
+\end{itemize}
+
+% ----------------- ETAPA S -----------------
+\subsubsection{Apartado de la S (Sopesar opciones y Pruebas Rápidas)}
+Tal como lo estructuramos en el ejercicio de clase, planteamos las opciones de actuación frente al pedido de exportación:
+
+\begin{enumerate}[leftmargin=1.8em,itemsep=3pt]
+    \item Informar mediante correo electrónico formal el problema ético y legal de exportar datos identificables sin autorización en el aviso de privacidad.
+    \item Presentar al responsable técnico y al jefe de marketing las consecuencias legales (sanciones de la LOPDP) y de reputación que pueden suceder si se envían copias de direcciones y compras a servidores externos sin permiso.
+    \item Ejecutar la exportación completa de datos tal como la pide marketing para evitar reclamos (opción descartada por violar ACM 1.6 e IEEE-CS/ACM 3.13).
+    \item Bloquear por completo el requerimiento y negarse a colaborar con cualquier análisis para el área de marketing.
+    \item Realizar una entrega/exportación parcial y segura mediante \textbf{datos anonimizados y agregados estadísticamente} (eliminando nombres, cédulas, correos y direcciones exactas), evitando así exponer información personal identificable hasta que se actualice el aviso de privacidad y se pida consentimiento (\textit{opt-in}) a los clientes.
+\end{enumerate}
+
+En el Cuadro~\ref{tab:pruebas} se someten los caminos principales a las cuatro pruebas rápidas de la etapa \textbf{S} (\textit{espejo, periódico, ¿y si todos? y menos favorecido}):
+
+\begin{table}[H]\centering
+\caption{Cuadro de evaluación de opciones con las cuatro pruebas rápidas (Etapa S)}\label{tab:pruebas}
+\small\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\raggedright\arraybackslash}p{3.2cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Opción evaluada} & \textbf{Prueba del espejo} & \textbf{Prueba del periódico} & \textbf{Prueba \guillemotleft ¿Y si todos?\guillemotright} & \textbf{Prueba del menos favorecido} \\
+\midrule
+Exportar todos los datos identificables y callar & 
+\textbf{Falla.} Sabría que actué en contra de mi ética profesional por presión. & 
+\textbf{Falla.} Si sale en prensa que la tienda entregó direcciones sin permiso, se hunde la credibilidad. & 
+\textbf{Falla.} Nadie confiaría sus datos personales al comercio electrónico. & 
+\textbf{Falla.} El cliente común queda desprotegido sin siquiera enterarse. \\
+\midrule
+Filtrar la queja a terceros o redes sociales & 
+\textbf{Alerta.} Incumple el deber de agotar primero los canales internos formales. & 
+\textbf{Alerta.} Causa alarma sin antes haber exigido la corrección interna. & 
+\textbf{Falla.} Rompe la reserva profesional cuando aún puede detenerse desde adentro. & 
+\textbf{Alerta.} No garantiza por sí sola una solución técnica para el usuario. \\
+\midrule
+Informar por correo + Exportación parcial anonimizada + Acta firmada & 
+\textbf{Aprueba.} Defiendo la privacidad de las personas y doy una salida técnica limpia. & 
+\textbf{Aprueba.} Muestra a una empresa que respeta la ley y aplica privacidad por diseño. & 
+\textbf{Aprueba.} Se consolida una analítica comercial ética y segura para todos. & 
+\textbf{Aprueba.} La identidad y dirección de cada cliente quedan 100\,\% resguardadas. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ----------------- ETAPA A -----------------
+\subsubsection{Apartado de la A (Actuar y documentar: Propuesta de Actuación Profesional)}
+Integrando el análisis de las etapas anteriores, la decisión y propuesta de actuación profesional responsable es la siguiente:
+
+\begin{destacado}
+\textbf{Decisión final (Apartado A):} Entregar la funcionalidad de exportación únicamente en \textbf{versión parcial y anonimizada} (enviando solo métricas estadísticas agrupadas por categorías de productos y zonas generales, bloqueando por completo la salida de nombres, identificadores, correos y direcciones domiciliarias). De manera simultánea, informar formalmente por correo electrónico al responsable técnico y a marketing que existe un impedimento ético y legal para exportar datos identificables sin consentimiento, establecer una fecha para implementar un módulo de autorización explícita (\textit{opt-in}) tras una evaluación de privacidad, y generar un documento o acta donde la jefatura apruebe esta decisión técnica para evitar problemáticas legales o laborales en el futuro.
+\end{destacado}
+
+\textbf{Detalle de las acciones profesionales y su respaldo en los códigos:}
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Abstención de exportar datos identificables y notificación formal (Peldaños 1, 2 y 3 de la escalera):} Apoyada en \textbf{ACM 1.6}, \textbf{IEEE-CS/ACM 2.06} y \textbf{3.13}, la desarrolladora detiene la extracción de datos personales en bruto y remite un correo institucional documentado a su líder técnico y a marketing. En él explica de forma objetiva que el aviso de privacidad actual no cubre esa transferencia y que copiar datos identificables en servidores externos expone a la compañía a sanciones bajo la LOPDP.
+    \item \textbf{Implementación de la alternativa técnica viable (Anonimización y agregación):} Para atender el objetivo comercial con la menor afectación posible a las personas (\textbf{ACM 1.1 y 1.6}), se modifica la consulta de base de datos para que genere reportes estadísticos agregados (por ejemplo, volumen de ventas por línea de producto y tendencias generales de compra) sin ningún atributo que permita identificar o reidentificar a un cliente individual.
+    \item \textbf{Plan de regularización y prevención de casos similares:} Para que en el futuro se puedan realizar campañas personalizadas de manera legítima, se propone: (a) realizar la evaluación formal de privacidad y seguridad del proveedor externo (\textbf{ACM 2.5 y 2.9}); (b) actualizar de forma clara el aviso de privacidad (\textbf{ACM 1.3}); y (c) programar una casilla de consentimiento informado (\textit{opt-in}) en la cuenta del usuario para que solo se procesen los datos de quienes lo autoricen expresamente.
+    \item \textbf{Documentación y resguardo de evidencia (Bitácora ética):} Todo el proceso se respalda en un acta de acuerdo interno firmada por el área técnica, respetando en todo momento la confidencialidad interna (\textbf{ACM 1.7} e \textbf{IEEE-CS/ACM 2.05}) al no divulgar ni extraer datos fuera de la organización.
+\end{enumerate}
+
+\begin{table}[H]\centering
+\caption{Registro en la Bitácora de Decisión Ética (Etapa A)}\label{tab:bitacora}
+\small\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries\raggedright\arraybackslash}p{4.1cm} >{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Campo de la bitácora} & \textbf{Registro de la decisión} \\
+\midrule
+Fecha y situación & Sábado 14 de noviembre de 2026 -- Solicitud de exportar datos identificables de clientes hacia una herramienta externa de marketing sin consentimiento (Caso 02). \\
+Hechos y suposiciones & \textit{Hecho:} El aviso de privacidad no autoriza transferir datos a terceros y el proveedor guardará copias externas. \textit{Suposición descartada:} Que \guillemotleft como otras tiendas lo hacen, es válido\guillemotright. \\
+Actores afectados & Clientes de la tienda, jefe de marketing, responsable técnico, desarrolladora y empresa de comercio electrónico. \\
+Principios y normas aplicables & \textbf{ACM (2018):} 1.2, 1.3, 1.6, 1.7, 2.3, 2.9. \textbf{IEEE-CS/ACM (1999):} 1.03, 2.05, 2.06, 3.12, 3.13, 5.11. \textbf{Ley en Ecuador:} LOPDP (2021) y COIP (art. 229). \\
+Opciones consideradas & 1) Informar por correo el problema; 2) Exponer consecuencias al líder; 3) Exportar con el problema; 4) Negarse totalmente; 5) Exportación parcial solo con datos estadísticos anonimizados + acta de acuerdo. \\
+Resultado de las 4 pruebas & La opción 5 combinada con el reporte formal (opciones 1 y 2) aprueba las pruebas del espejo, periódico, \guillemotleft ¿Y si todos?\guillemotright{} y protege al cliente (menos favorecido). \\
+Decisión y canal usado & Entregar vista parcial únicamente con datos agregados/anonimizados, notificar por correo institucional al líder técnico y firmar documento de respaldo para implementar \textit{opt-in} previa evaluación de privacidad. \\
+Evidencia guardada & Captura del aviso de privacidad vigente, correo enviado al líder técnico, script SQL de agregación sin datos personales y acta de acuerdo firmada. \\
+Revisión programada & En 15 días para verificar que ningún dato identificable salió al servidor externo y validar el avance de la consulta legal sobre el aviso de privacidad. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+---
+
+% ========================= SECCIÓN 3 =========================
+\section{Análisis de Resultados y Conclusiones}
+
+\subsection{Comparación de la Utilidad de Ambos Códigos Profesionales}
+Al resolver el dilema del Caso 02 empleando tanto el Código de Ética de ACM (2018) como el Código de Ingeniería de Software de IEEE-CS/ACM (1999), observamos como equipo que ambos documentos no compiten entre sí, sino que se complementan de manera muy práctica para respaldar la toma de decisiones.
+
+En cuanto a sus diferencias de aplicación, el \textbf{Código de ACM (2018)} resultó mucho más específico en el plano tecnológico actual: su Principio 1.6 incorpora conceptos modernos de protección de datos como la minimización de la información recolectada, el consentimiento informado, la prohibición de desviar la finalidad original de los datos y el cuidado frente a la reidentificación al cruzar bases de datos (ACM, 2018). Gracias a ese detalle fue posible estructurar técnicamente la solución de anonimización estadística. En cambio, el \textbf{Código IEEE-CS/ACM (1999)} aportó mayor fortaleza en el manejo de la presión laboral y la gestión del proyecto: sus cláusulas 2.06 (deber de documentar y reportar al empleador instrucciones que puedan violar la ley) y 5.11 (obligación de los líderes de no pedir acciones contrarias al código) le dan al desarrollador el sustento exacto para responder ante un jefe que intenta usar mal una cláusula de confidencialidad (IEEE-CS/ACM, 1999).
+
+Para orientar la conducta dentro de una empresa de desarrollo de software, ambos códigos deberían aplicarse de forma integrada: el código de ACM como base para las políticas de arquitectura, privacidad por diseño, ciberseguridad y manejo de datos; y el código de IEEE-CS/ACM como reglamento de trabajo para las revisiones de calidad (QA), la firma honesta de entregables y el uso de canales internos donde cualquier programador pueda reportar riesgos éticos sin temor a represalias.
+
+\subsection{Conclusiones}
+\begin{enumerate}[leftmargin=1.8em,itemsep=4pt]
+    \item \textbf{Importancia de los códigos de ética frente a la presión del entorno:} Los códigos profesionales de ACM (2018) e IEEE-CS/ACM (1999) cumplen una función indispensable de respaldo objetivo cuando dentro de una empresa se intenta justificar una mala práctica con frases como \guillemotleft todos lo hacen\guillemotright{} o \guillemotleft ya está aprobado por gerencia\guillemotright. Apoyarse en disposiciones concretas permite que el ingeniero defienda el interés público y la privacidad de los usuarios con argumentos técnicos y deontológicos sólidos, y no solo desde una opinión personal (Sommerville, 2011).
+
+    \item \textbf{Aplicación práctica mediante el método P-A-U-S-A en situaciones reales:} La resolución del Caso 02 demuestra que aplicar la ética en la Ingeniería de Software no consiste simplemente en decir \guillemotleft no\guillemotright{} y paralizar los proyectos, ni tampoco en filtrar información confidencial hacia afuera. El uso ordenado del método P-A-U-S-A permite separar hechos de suposiciones, identificar a los actores que ni siquiera saben que sus datos están en riesgo y construir soluciones técnicas viables —como la exportación parcial anonimizada y el consentimiento \textit{opt-in}—, conciliando la actividad comercial con el respeto irrestricto a la LOPDP (Asamblea Nacional del Ecuador, 2021; ACM, 2018).
+
+    \item \textbf{Responsabilidad indelegable del ingeniero de software sobre lo que programa:} Tanto los casos históricos estudiados en la asignatura (como la falta de parches en Equifax o el ocultamiento de información en Volkswagen y Boeing) como el dilema analizado confirman que tener la capacidad técnica de acceder o exportar una base de datos nunca equivale a tener autorización ética para hacerlo (Leveson \& Turner, 1993; IEEE-CS/ACM, 1999). El ingeniero de software es directamente responsable de la calidad, la seguridad y el impacto humano de los sistemas que construye, debiendo documentar sus decisiones y priorizar siempre la protección de la sociedad.
+\end{enumerate}
+
+% ========================= REFERENCIAS APA 7 =========================
+\clearpage
+\section*{Referencias Bibliográficas}
+\addcontentsline{toc}{section}{Referencias Bibliográficas}
+
+\begingroup
+\setlength{\parindent}{-1.27cm}
+\setlength{\leftskip}{1.27cm}
+\setlength{\parskip}{8pt}
+
+Asamblea Nacional del Ecuador. (2014). \textit{Código Orgánico Integral Penal (COIP)}. Registro Oficial Suplemento 180, 10 de febrero de 2014.
+
+Asamblea Nacional del Ecuador. (2021). \textit{Ley Orgánica de Protección de Datos Personales (LOPDP)}. Registro Oficial Quinto Suplemento 459, 26 de mayo de 2021. \url{https://www.gob.ec/regulaciones/ley-organica-proteccion-datos-personales-0}
+
+Association for Computing Machinery [ACM]. (2018). \textit{Código de Ética y Conducta Profesional de ACM} (F. Gagliardi, A. Ortiz, U. Cortés, A. Hafner y N. Castillo, Trads.). \url{https://www.acm.org/code-of-ethics}
+
+Gotterbarn, D., Miller, K., \& Rogerson, S. (1999). Software engineering code of ethics is approved. \textit{Communications of the ACM}, \textit{42}(10), 102--107. \url{https://doi.org/10.1145/317665.317682}
+
+IEEE-CS/ACM Joint Task Force on Software Engineering Ethics and Professional Practices. (1999). \textit{Ingeniería de software: Código de ética y práctica profesional, versión 5.2} (C. Herrera Escudero, J. Dolado y M. Bingham, Trads.). \url{http://seeri.etsu.edu/Codes/SpanishVersionSECode.htm}
+
+Institute of Electrical and Electronics Engineers [IEEE]. (2020). \textit{IEEE Code of Ethics}. IEEE. \url{https://www.ieee.org/about/corporate/governance/p7-8.html}
+
+Leveson, N. G., \& Turner, C. S. (1993). An investigation of the Therac-25 accidents. \textit{IEEE Computer}, \textit{26}(7), 18--41. \url{https://doi.org/10.1109/MC.1993.274940}
+
+Presidencia de la República del Ecuador. (2023). \textit{Reglamento General de la Ley Orgánica de Protección de Datos Personales (Decreto Ejecutivo 904)}. Registro Oficial Tercer Suplemento 435, 13 de noviembre de 2023.
+
+Sommerville, I. (2011). \textit{Ingeniería de software} (9.ª ed.). Pearson Educación.
+
+\endgroup
+
+\end{document}
